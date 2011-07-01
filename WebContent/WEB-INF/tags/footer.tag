@@ -1,0 +1,1 @@
+<div id="footer">Copyright &copy; 2011 <a href="http://personalportas.com.br/">Personal Portas</a> - Developed by <a href="http://luizrobertofreitas.wordpress.com">Market Application</a></div>
