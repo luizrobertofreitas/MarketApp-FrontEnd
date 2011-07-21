@@ -4,6 +4,7 @@
 					<a href="#"><span>
 						Technology &nbsp;
 						<em class="opener-technology">
+						
 							<img src="/marketapp-fe/resources/images/zonebar-downarrow.png" alt="dropdown" />
 						</em>
 					</span></a>
