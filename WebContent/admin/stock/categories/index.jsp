@@ -54,22 +54,7 @@
 			});
 		</script>
 		
-		<!--  styled file upload script --> 
-		<tags:javascript-tag src="jquery.filestyle.js" />
 		
-		<script type="text/javascript" charset="utf-8">
-		  $(function() {
-		      $("input.file_1").filestyle({ 
-		          image: "images/forms/choose-file.gif",
-		          imageheight : 21,
-		          imagewidth : 78,
-		          width : 310
-		      });
-		  });
-		</script>
-		
-		<!-- Custom jquery scripts -->
-		<tags:javascript-tag src="custom_jquery.js" />
 		 
 		<!-- Tooltips -->
 		<tags:javascript-tag src="jquery.tooltip.js" />
@@ -155,9 +140,6 @@
 			});
 		</script>
 		
-		<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
-		<tags:javascript-tag src="jquery.pngFix.pack.js" />
-		
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$(document).pngFix( );
@@ -226,6 +208,12 @@
 				});
 			});			
 		</script>
+		
+		<!-- Custom jquery scripts -->
+		<tags:javascript-tag src="custom_jquery.js" />
+		
+		<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
+		<tags:javascript-tag src="jquery.pngFix.pack.js" />
 	</head>
 	<body> 
 		<div id="page-top-outer">		
