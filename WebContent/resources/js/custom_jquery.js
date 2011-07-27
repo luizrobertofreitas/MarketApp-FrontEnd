@@ -1,5 +1,4 @@
 // 1 - START DROPDOWN SLIDER SCRIPTS ------------------------------------------------------------------------
-
 $(document).ready(function () {
     $(".showhide-account").click(function () {
         $(".account-content").slideToggle("fast");
@@ -15,7 +14,6 @@ $(document).ready(function () {
         return false;
     });
 });
-
 //  END ----------------------------- 1
 
 // 2 - START LOGIN PAGE SHOW HIDE BETWEEN LOGIN AND FORGOT PASSWORD BOXES--------------------------------------
@@ -63,7 +61,6 @@ $(document).ready(function() {
 
 
 // 4 - CLOSE OPEN SLIDERS BY CLICKING ELSEWHERE ON PAGE -------------------------------------------------------------------------
-
 $(document).bind("click", function (e) {
     if (e.target.id != $(".showhide-account").attr("class")) $(".account-content").slideUp();
 });

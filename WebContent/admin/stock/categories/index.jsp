@@ -53,8 +53,6 @@
 				$('.styledselect_pages').selectbox({ inputClass: "styledselect_pages" });
 			});
 		</script>
-		
-		
 		 
 		<!-- Tooltips -->
 		<tags:javascript-tag src="jquery.tooltip.js" />
@@ -146,74 +144,17 @@
 			});
 		</script>
 		
-		<script type="text/javascript">
-			$(function(){
-				
-				$('#clean').click(function(){
-					$('#result').empty();
-					$('#content').empty();
-				});
-				
-				$('#cleancat').click(function(){
-					$('#content').empty();
-				});
-				
-				$('#load').click(function(){
-					
-					$.read('/marketapp-be/resources/categories/list', function(response){
-						
-						//Clean the result div
-						$('#result').empty();
-						
-						//Get the common attributes in the JSON object
-						$('#result').append('<p>Method: ' + response.method + '</p>');
-						$('#result').append('<p>Status: ' + response.status + '</p>');
-						$('#result').append('<p>Message: ' + response.message + '</p>');
-						
-						//Table
-						$('#result').append('<table>');
-						
-						//Table header
-						$('#result').append('<tr><th>ID</th><th>Name</th><th>Description<th/><tr/>');
-						
-						//Iterate over the response object
-						$.each(response.categories, function(index, obj){
-							$('#result').append('<tr><td><a class="category" id="' + obj.id + '" href="#">' + obj.id  + '</a></td><td>' + obj.name + '</td><td>' + obj.description + '<td/><tr/>');
-						});
-						
-						$('#result').append('</table>');
-					});
-				});
-				
-				$('.category').click(function(){
-					
-					catId = $(this).id;
-					
-					$.read('/marketapp-be/resouces/categories/' + catId, function(response){
-						$('#content').append('<p><strong>Method: </strong>' + response.method + '</p>');
-						$('#content').append('<p><strong>Status: </strong>' + response.status + '</p>');
-						$('#content').append('<p><strong>Message: </strong>' + response.message + '</p>');
-						$('#content').append('<hr/>');
-						//Iterate over the response object
-						$.each(response.category, function(index, obj){
-							$('#content').append('<p><strong>ID: </strong>' + obj.id + '</p>');
-							$('#content').append('<p><strong>Name: </strong>' + obj.name + '</p>');
-							$('#content').append('<p><strong>Description: </strong>' + obj.description + '</p>');
-							$('#content').append('<p><a href="categories/edit.jsp?id='+ obj.id + '">Edit Category</a></p>');
-						});
-						$('#content').append('<p><a id="cleancat" href="#">Clean Category</a></p>');
-					});
-					
-					
-				});
-			});			
-		</script>
-		
-		<!-- Custom jquery scripts -->
+		<!-- Custom JQuery scripts -->
 		<tags:javascript-tag src="custom_jquery.js" />
 		
 		<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
-		<tags:javascript-tag src="jquery.pngFix.pack.js" />
+		<!-- <tags:javascript-tag src="jquery.pngFix.pack.js" /> -->
+		
+		<!-- JQuery REST javaScript library -->
+		<tags:javascript-tag src="rest/jquery.rest.js" />
+		
+		<!-- Business logic javaScript -->
+		<tags:javascript-tag src="categories/index.js" />
 	</head>
 	<body> 
 		<div id="page-top-outer">		
@@ -255,20 +196,6 @@
 						<td>
 							<div id="content-table-inner">						
 								<div id="table-content">
-									<div id="message-yellow">
-										<table border="0" width="100%" cellpadding="0" cellspacing="0">
-											<tr>
-												<td class="yellow-left">
-													You have a new message. <a href="">Go to Inbox.</a>
-												</td>
-												<td class="yellow-right">
-													<a class="close-yellow">
-														<tags:image-tag src="table/icon_close_yellow.gif" />
-													</a>
-												</td>
-											</tr>
-										</table>
-									</div>
 									
 									<div id="message-red">
 										<table border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -285,26 +212,11 @@
 										</table>
 									</div>
 									
-									<div id="message-blue">
-										<table border="0" width="100%" cellpadding="0" cellspacing="0">
-											<tr>
-												<td class="blue-left">
-													Welcome back. <a href="">View my account.</a>
-												</td>
-												<td class="blue-right">
-													<a class="close-blue">
-														<tags:image-tag src="table/icon_close_blue.gif" />
-													</a>
-												</td>
-											</tr>
-										</table>
-									</div>
-								
 									<div id="message-green">
 										<table border="0" width="100%" cellpadding="0" cellspacing="0">
 											<tr>
 												<td class="green-left">
-													Product added sucessfully. <a href="">Add new one.</a>
+													Product added sucessfully.
 												</td>
 												<td class="green-right">
 													<a class="close-green">
@@ -314,109 +226,16 @@
 											</tr>
 										</table>
 									</div>
-							
 							 
 									<form id="mainform" action="">
 										<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 											<tr>
 												<th class="table-header-check"><a id="toggle-all" ></a> </th>
-												<th class="table-header-repeat line-left minwidth-1"><a href="">Last Name</a>	</th>
-												<th class="table-header-repeat line-left minwidth-1"><a href="">First Name</a></th>
-												<th class="table-header-repeat line-left"><a href="">Email</a></th>
-												<th class="table-header-repeat line-left"><a href="">Due</a></th>
-												<th class="table-header-repeat line-left"><a href="">Website</a></th>
+												<th class="table-header-repeat line-left minwidth-1"><a href="">ID</a>	</th>
+												<th class="table-header-repeat line-left minwidth-1"><a href="">Nome</a></th>
+												<th class="table-header-repeat line-left"><a href="">Descri&ccedil;&atilde;o</a></th>
 												<th class="table-header-options line-left"><a href="">Options</a></th>
-											</tr>
-											<tr>
-												<td><input  type="checkbox"/></td>
-												<td>Sabev</td>
-												<td>George</td>
-												<td><a href="">george@mainevent.co.za</a></td>
-												<td>R250</td>
-												<td><a href="">www.mainevent.co.za</a></td>
-												<td class="options-width">
-												<a href="" title="Edit" class="icon-1 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-2 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-3 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-4 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-5 info-tooltip"></a>
-												</td>
-											</tr>
-											<tr class="alternate-row">
-												<td><input  type="checkbox"/></td>
-												<td>Sabev</td>
-												<td>George</td>
-												<td><a href="">george@mainevent.co.za</a></td>
-												<td>R250</td>
-												<td><a href="">www.mainevent.co.za</a></td>
-												<td class="options-width">
-												<a href="" title="Edit" class="icon-1 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-2 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-3 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-4 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-5 info-tooltip"></a>
-												</td>
-											</tr>
-											<tr>
-												<td><input  type="checkbox"/></td>
-												<td>Sabev</td>
-												<td>George</td>
-												<td><a href="">george@mainevent.co.za</a></td>
-												<td>R250</td>
-												<td><a href="">www.mainevent.co.za</a></td>
-												<td class="options-width">
-												<a href="" title="Edit" class="icon-1 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-2 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-3 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-4 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-5 info-tooltip"></a>
-												</td>
-											</tr>
-											<tr class="alternate-row">
-												<td><input  type="checkbox"/></td>
-												<td>Sabev</td>
-												<td>George</td>
-												<td><a href="">george@mainevent.co.za</a></td>
-												<td>R250</td>
-												<td><a href="">www.mainevent.co.za</a></td>
-												<td class="options-width">
-												<a href="" title="Edit" class="icon-1 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-2 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-3 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-4 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-5 info-tooltip"></a>
-												</td>
-											</tr>
-											<tr>
-												<td><input  type="checkbox"/></td>
-												<td>Sabev</td>
-												<td>George</td>
-												<td><a href="">george@mainevent.co.za</a></td>
-												<td>R250</td>
-												<td><a href="">www.mainevent.co.za</a></td>
-												<td class="options-width">
-												<a href="" title="Edit" class="icon-1 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-2 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-3 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-4 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-5 info-tooltip"></a>
-												</td>
-											</tr>
-											<tr class="alternate-row">
-												<td><input  type="checkbox"/></td>
-												<td>Sabev</td>
-												<td>George</td>
-												<td><a href="">george@mainevent.co.za</a></td>
-												<td>R250</td>
-												<td><a href="">www.mainevent.co.za</a></td>
-												<td class="options-width">
-												<a href="" title="Edit" class="icon-1 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-2 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-3 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-4 info-tooltip"></a>
-												<a href="" title="Edit" class="icon-5 info-tooltip"></a>
-												</td>
-											</tr>
+											</tr>											
 										</table>
 									</form>
 								</div>
@@ -424,8 +243,9 @@
 								<div id="actions-box">
 									<a href="" class="action-slider"></a>
 									<div id="actions-box-slider">
-										<a href="" class="action-edit">Edit</a>
-										<a href="" class="action-delete">Delete</a>
+										<a href="#" id="reload" class="action-reload">Reload</a>
+										<a href="#" id="edit" class="action-edit">Edit</a>
+										<a href="#" id="delete" class="action-delete">Delete</a>
 									</div>
 									<div class="clear"></div>
 								</div>
