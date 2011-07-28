@@ -72,80 +72,75 @@
 			});
 		</script> 
 		
-		<script type="text/javascript">
-			$(document).ready(function(){
-				//$(document).pngFix( );
-				
-				var messageGreen = $('#message-green');
-				var messageGreenLeft = $('#green-left');
-				var messageGreenRight = $('#green-right');
-
-				var messageRed = $('#message-red');
-				var messageRedLeft = $('#red-left');
-				var messageRedRight = $('#red-right');
-				
-				messageGreen.hide();
-				messageGreenLeft.empty();
-				messageGreenRight.empty();
-				
-				messageRed.hide();
-				messageRedLeft.empty();
-				messageRedRight.empty();
-				
-				alert('about to run read');
-				
-				$.read('/marketapp-be/resources/categories/list', function(response){
-					
-					/* Remove all the data rows */
-					//$('.data').remove();
-					
-					messageGreen.hide();
-					messageGreenLeft.empty();
-					messageGreenRight.empty();
-					
-					messageRed.hide();
-					messageRedLeft.empty();
-					messageRedRight.empty();
-					
-					/* Get the common attributes in the JSON object */
-					if(response.status == 'success') {
-						messageGreenLeft.append(response.message);
-						messageGreenRight.append(response.method + ' - ' + response.status);
-						messageGreen.fadeIn();
-					}
-					else {
-						messageRedLeft.append(response.message);
-						messageRedRight.append(response.method + ' - ' + response.status);
-						messageRed.fadeIn();
-					}
-					
-					//Iterate over the response object
-					$.each(response.categories, function(index, obj) {
-						var rowClass = '.data ';
-						
-						/* Zebra table color logic */
-						if(obj.id%2 != 0) {
-							rowClass += '.alternate-row';
+		
+		<!--  date picker script -->
+		<tags:stylesheet-tag href="datePicker.css" />
+		<tags:javascript-tag src="date.js" />
+		<tags:javascript-tag src="jquery.datePicker.js" />
+		<script type="text/javascript" charset="utf-8">
+			$(function(){
+				// initialise the "Select date" link
+				$('#date-pick')
+					.datePicker(
+						// associate the link with a date picker
+						{
+							createButton:false,
+							startDate:'01/01/2005',
+							endDate:'31/12/2020'
 						}
-						
-						var inputCheckbox = '<td><input  type="checkbox"/></td>';
-						var idTd = '<td><a class="category" id="' + obj.id + '" href="#">' + obj.id + '</a></td>';
-						var nomeTd = '<td>' + obj.name + '</td>';
-						var descricaoTd = '<td>' + obj.description + '</td>';
-						var optionsTd = '<td class="options-width">' + 
-											'<a href="" title="Edit" class="icon-1 info-tooltip"></a>' +
-											'<a href="" title="Edit" class="icon-2 info-tooltip"></a>' +
-											'<a href="" title="Edit" class="icon-3 info-tooltip"></a>' +
-											'<a href="" title="Edit" class="icon-4 info-tooltip"></a>' +
-											'<a href="" title="Edit" class="icon-5 info-tooltip"></a>' +
-										'</td>';
-
-						var newTr = '<tr class="' + rowClass + '">' + inputCheckbox + idTd + nomeTd + descricaoTd + optionsTd + '</tr>';
-						
-						$('#product-table tr:last').after(newTr);
-					});
+					).bind(
+						// when the link is clicked display the date picker
+						'click',
+						function()
+						{
+							updateSelects($(this).dpGetSelected()[0]);
+							$(this).dpDisplay();
+							return false;
+						}
+					).bind(
+						// when a date is selected update the SELECTs
+						'dateSelected',
+						function(e, selectedDate, $td, state)
+						{
+							updateSelects(selectedDate);
+						}
+					).bind(
+						'dpClosed',
+						function(e, selected)
+						{
+							updateSelects(selected[0]);
+						}
+					);
+					
+				var updateSelects = function (selectedDate)
+				{
+					var selectedDate = new Date(selectedDate);
+					$('#d option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
+					$('#m option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
+					$('#y option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
+				};
+				// listen for when the selects are changed and update the picker
+				$('#d, #m, #y').bind('change', function(){
+							var d = new Date(
+										$('#y').val(),
+										$('#m').val()-1,
+										$('#d').val()
+									);
+							$('#date-pick').dpSetSelected(d.asString());
 				});
 				
+				// default the position of the selects to today
+				var today = new Date();
+				updateSelects(today.getTime());
+				
+				// and update the datePicker to reflect it...
+				$('#d').trigger('change');
+			});
+		</script>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(document).pngFix( );
 			});
 		</script>
 		
@@ -248,7 +243,7 @@
 								<div id="actions-box">
 									<a href="" class="action-slider"></a>
 									<div id="actions-box-slider">
-										<a href="#" id="reload-action" class="action-reload">Reload</a>
+										<a href="" id="reload" class="action-reload">Reload</a>
 										<a href="" id="edit" class="action-edit">Edit</a>
 										<a href="" id="delete" class="action-delete">Delete</a>
 									</div>
