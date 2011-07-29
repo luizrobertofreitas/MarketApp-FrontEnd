@@ -72,14 +72,14 @@
 			});
 		</script> 
 		
-		<!-- Custom JQuery scripts -->
-		<tags:javascript-tag src="custom_jquery.js" />
-		
 		<!-- JQuery REST javaScript library -->
 		<tags:javascript-tag src="rest/jquery.rest.js" />
 		
 		<!-- Business logic javaScript -->
 		<tags:javascript-tag src="categories/index.js" />
+		
+		<!-- Custom JQuery scripts -->
+		<!-- <tags:javascript-tag src="custom_jquery.js" /> -->
 		
 		<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
 		<tags:javascript-tag src="jquery.pngFix.pack.js" />
