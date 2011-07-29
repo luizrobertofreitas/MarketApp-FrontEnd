@@ -1,6 +1,10 @@
 /* On ready */
 $(document).ready(function() {
 	Categories.loadAll();
+	
+	$('#reload').click(function(){
+		Categories.loadAll();
+	});
 });
 
 /* Categories singleton class */
