@@ -72,94 +72,17 @@
 			});
 		</script> 
 		
-		<script type="text/javascript">
-			$(document).ready(function(){
-				//$(document).pngFix( );
-				
-				var messageGreen = $('#message-green');
-				var messageGreenLeft = $('#green-left');
-				var messageGreenRight = $('#green-right');
-
-				var messageRed = $('#message-red');
-				var messageRedLeft = $('#red-left');
-				var messageRedRight = $('#red-right');
-				
-				messageGreen.hide();
-				messageGreenLeft.empty();
-				messageGreenRight.empty();
-				
-				messageRed.hide();
-				messageRedLeft.empty();
-				messageRedRight.empty();
-				
-				alert('about to run read');
-				
-				$.read('/marketapp-be/resources/categories/list', function(response){
-					
-					/* Remove all the data rows */
-					//$('.data').remove();
-					
-					messageGreen.hide();
-					messageGreenLeft.empty();
-					messageGreenRight.empty();
-					
-					messageRed.hide();
-					messageRedLeft.empty();
-					messageRedRight.empty();
-					
-					/* Get the common attributes in the JSON object */
-					if(response.status == 'success') {
-						messageGreenLeft.append(response.message);
-						messageGreenRight.append(response.method + ' - ' + response.status);
-						messageGreen.fadeIn();
-					}
-					else {
-						messageRedLeft.append(response.message);
-						messageRedRight.append(response.method + ' - ' + response.status);
-						messageRed.fadeIn();
-					}
-					
-					//Iterate over the response object
-					$.each(response.categories, function(index, obj) {
-						var rowClass = '.data ';
-						
-						/* Zebra table color logic */
-						if(obj.id%2 != 0) {
-							rowClass += '.alternate-row';
-						}
-						
-						var inputCheckbox = '<td><input  type="checkbox"/></td>';
-						var idTd = '<td><a class="category" id="' + obj.id + '" href="#">' + obj.id + '</a></td>';
-						var nomeTd = '<td>' + obj.name + '</td>';
-						var descricaoTd = '<td>' + obj.description + '</td>';
-						var optionsTd = '<td class="options-width">' + 
-											'<a href="" title="Edit" class="icon-1 info-tooltip"></a>' +
-											'<a href="" title="Edit" class="icon-2 info-tooltip"></a>' +
-											'<a href="" title="Edit" class="icon-3 info-tooltip"></a>' +
-											'<a href="" title="Edit" class="icon-4 info-tooltip"></a>' +
-											'<a href="" title="Edit" class="icon-5 info-tooltip"></a>' +
-										'</td>';
-
-						var newTr = '<tr class="' + rowClass + '">' + inputCheckbox + idTd + nomeTd + descricaoTd + optionsTd + '</tr>';
-						
-						$('#product-table tr:last').after(newTr);
-					});
-				});
-				
-			});
-		</script>
-		
 		<!-- Custom JQuery scripts -->
 		<tags:javascript-tag src="custom_jquery.js" />
-		
-		<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
-		<!-- <tags:javascript-tag src="jquery.pngFix.pack.js" /> -->
 		
 		<!-- JQuery REST javaScript library -->
 		<tags:javascript-tag src="rest/jquery.rest.js" />
 		
 		<!-- Business logic javaScript -->
 		<tags:javascript-tag src="categories/index.js" />
+		
+		<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
+		<tags:javascript-tag src="jquery.pngFix.pack.js" />
 	</head>
 	<body> 
 		<div id="page-top-outer">		
@@ -206,7 +129,6 @@
 										<table border="0" width="100%" cellpadding="0" cellspacing="0">
 											<tr>
 												<td class="red-left">
-													Error. <a href="">Please try again.</a>
 												</td>
 												<td class="red-right">
 													<a class="close-red">
@@ -221,7 +143,6 @@
 										<table border="0" width="100%" cellpadding="0" cellspacing="0">
 											<tr>
 												<td class="green-left">
-													Product added sucessfully.
 												</td>
 												<td class="green-right">
 													<a class="close-green">
