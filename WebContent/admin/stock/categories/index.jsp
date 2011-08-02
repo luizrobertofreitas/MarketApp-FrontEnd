@@ -170,8 +170,7 @@
 									<a href="" class="action-slider"></a>
 									<div id="actions-box-slider">
 										<a href="#" id="reload" class="action-reload">Reload</a>
-										<a href="" id="edit" class="action-edit">Edit</a>
-										<a href="" id="delete" class="action-delete">Delete</a>
+										<a href="#" id="delete" class="action-delete">Delete</a>
 									</div>
 									<div class="clear"></div>
 								</div>
