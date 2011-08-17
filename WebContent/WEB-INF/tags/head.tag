@@ -4,6 +4,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<tags:stylesheet-tag href="reset.css" />
 <tags:stylesheet-tag href="screen.css" />
 <tags:javascript-tag src="jquery-1.4.1.min.js" />
 <tags:javascript-tag src="custom_jquery.js" />
