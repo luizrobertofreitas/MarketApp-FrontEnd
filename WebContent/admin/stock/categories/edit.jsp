@@ -174,26 +174,44 @@
 					<h1>Editar Categoria</h1>
 				</div>
 				<div id="content-table-inner">
-					<form>
-						<p>
-							<label for="id">ID:</label><br/>
-							<input id="id" type="text" value="${param['id']}" class="input" size="7" readonly="readonly" />
-						</p>
-						<p>
-							<label for="nome">Nome:</label><br/>
-							<input id="nome" type="text" class="input" />
-						</p>
-						<br/>
-						<p>
-							<label for="descricao">Descri&ccedil;&atilde;o:</label><br/>
-							<textarea id="descricao" rows="4" cols="70" class="input"></textarea>
-						</p>
-						<br/>
-						<p>
-							<input id="submit" type="button" value="Salvar" class="button" />
-							<input id="reset" type="reset" value="Limpar" class="button" />
-						</p>
-					</form>
+					<div id="message-red">
+						<div align="left" class="red-left">
+							
+						</div>
+						<div align="right" class="red-right">
+							<a class="close-red">Fechar</a>
+						</div>						
+					</div>
+					<div id="message-green">
+						<div align="left" class="green-left">
+							
+						</div>
+						<div align="right" class="green-right">
+							<a class="close-green">Fechar</a>
+						</div>
+					</div>
+					<div>
+						<form>
+							<p>
+								<label for="id">ID:</label><br/>
+								<input id="id" type="text" value="${param['id']}" class="input" size="7" readonly="readonly" />
+							</p>
+							<p>
+								<label for="nome">Nome:</label><br/>
+								<input id="nome" type="text" class="input" />
+							</p>
+							<br/>
+							<p>
+								<label for="descricao">Descri&ccedil;&atilde;o:</label><br/>
+								<textarea id="descricao" rows="4" cols="70" class="input"></textarea>
+							</p>
+							<br/>
+							<p>
+								<input id="submit" type="button" value="Salvar" class="button" />
+								<input id="reset" type="reset" value="Limpar" class="button" />
+							</p>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
