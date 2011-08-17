@@ -36,7 +36,7 @@
 							<tr>
 								<th></th>
 								<td>
-									<input type="submit" class="submit-login" />
+									<input type="submit" value="Entrar" class="button" />
 								</td>
 							</tr>
 						</table>

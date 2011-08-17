@@ -4,83 +4,59 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  
-  <!-- Roles configuration -->
   <security-role>
-  	<role-name>ADMIN</role-name>
+    <role-name>ADMIN</role-name>
   </security-role>
-  
   <security-role>
-  	<role-name>STOCK-OPERATOR</role-name>
+    <role-name>STOCK-OPERATOR</role-name>
   </security-role>
-  
-  <!-- Login configuration -->
   <login-config>
-  	<auth-method>FORM</auth-method>
-  	<form-login-config>
-  		<form-login-page>/login.jsp</form-login-page>
-  		<form-error-page>/login.jsp</form-error-page>
-  	</form-login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/login.jsp</form-login-page>
+      <form-error-page>/login.jsp</form-error-page>
+    </form-login-config>
   </login-config>
-  
-  <!-- Security constraint for main page - Everybody can access it -->
   <security-constraint>
-  	<web-resource-collection>
-  		<web-resource-name>main</web-resource-name>
-  		<url-pattern>/admin/*</url-pattern>
-  		<http-method>GET</http-method>
-  	</web-resource-collection>
-  	
-  	<auth-constraint>
-  		<role-name>*</role-name>
-  	</auth-constraint>
-  	
-  	<user-data-constraint>
-  		<!-- SSL use only -->
-  		<!-- <transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
-  		<transport-guarantee>NONE</transport-guarantee>
-  	</user-data-constraint>  	
+    <web-resource-collection>
+      <web-resource-name>main</web-resource-name>
+      <url-pattern>/admin/*</url-pattern>
+      <http-method>GET</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>*</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
   </security-constraint>
-  
-  <!-- Security constraint for stock functionalities - Admin and Stock-operator can access it -->
   <security-constraint>
-  	<web-resource-collection>
-  		<web-resource-name>stock</web-resource-name>
-  		<url-pattern>/admin/stock/*</url-pattern>
-  		<http-method>POST</http-method>
-  		<http-method>GET</http-method>
-  	</web-resource-collection>
-  	
-  	<auth-constraint>
-  		<role-name>ADMIN</role-name>
-  		<role-name>STOCK-OPERATOR</role-name>
-  	</auth-constraint>
-  	
-  	<user-data-constraint>
-  		<!-- SSL use only -->
-  		<!-- <transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
-  		<transport-guarantee>NONE</transport-guarantee>
-  	</user-data-constraint>  	
+    <web-resource-collection>
+      <web-resource-name>stock</web-resource-name>
+      <url-pattern>/admin/stock/*</url-pattern>
+      <http-method>POST</http-method>
+      <http-method>GET</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>ADMIN</role-name>
+      <role-name>STOCK-OPERATOR</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
   </security-constraint>
-  
-  <!-- Security constraint for admin functionalities - Admin can access it -->
   <security-constraint>
-  	<web-resource-collection>
-  		<web-resource-name>admin</web-resource-name>
-  		<url-pattern>/admin/admin/*</url-pattern>
-  		<http-method>POST</http-method>
-  		<http-method>GET</http-method>
-  	</web-resource-collection>
-  	
-  	<auth-constraint>
-  		<role-name>ADMIN</role-name>
-  	</auth-constraint>
-  	
-  	<user-data-constraint>
-  		<!-- SSL use only -->
-  		<!-- <transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
-  		<transport-guarantee>NONE</transport-guarantee>
-  	</user-data-constraint>  	
+    <web-resource-collection>
+      <web-resource-name>admin</web-resource-name>
+      <url-pattern>/admin/admin/*</url-pattern>
+      <http-method>POST</http-method>
+      <http-method>GET</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>ADMIN</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
   </security-constraint>
-  
 </web-app>
