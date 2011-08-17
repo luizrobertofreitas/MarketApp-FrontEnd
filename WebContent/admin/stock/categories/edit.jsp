@@ -137,10 +137,10 @@
 			
 			// default the position of the selects to today
 			var today = new Date();
-			updateSelects(today.getTime());
-			
-			// and update the datePicker to reflect it...
-			$('#d').trigger('change');
+				updateSelects(today.getTime());
+				
+				// and update the datePicker to reflect it...
+				$('#d').trigger('change');
 			});
 		</script>
 		
@@ -171,10 +171,14 @@
 		<div id="content-outer">
 			<div id="content">
 				<div id="page-heading">
-					<h1>Editar Categoria ${param['id']}</h1>
+					<h1>Editar Categoria</h1>
 				</div>
 				<div id="content-table-inner">
 					<form>
+						<p>
+							<label for="id">ID:</label><br/>
+							<input id="id" type="text" value="${param['id']}" class="input" size="7" readonly="readonly" />
+						</p>
 						<p>
 							<label for="nome">Nome:</label><br/>
 							<input id="nome" type="text" class="input" />
@@ -186,8 +190,8 @@
 						</p>
 						<br/>
 						<p>
-							<input type="button" value="Salvar" class="button" />
-							<input type="reset" value="Limpar" class="button" />
+							<input id="submit" type="button" value="Salvar" class="button" />
+							<input id="reset" type="reset" value="Limpar" class="button" />
 						</p>
 					</form>
 				</div>
