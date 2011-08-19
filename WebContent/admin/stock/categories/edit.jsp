@@ -60,7 +60,7 @@
 		</script>
 		
 		<!-- Custom jquery scripts -->
-		<script src="js/custom_jquery.js" type="text/javascript"></script>
+		<tags:javascript-tag src="custom_jquery.js" />
 		<tags:javascript-tag src="jquery.filestyle.js" />
 		 
 		<!-- Tooltips -->
@@ -144,6 +144,9 @@
 			});
 		</script>
 		
+		<tags:javascript-tag src="rest/jquery.rest.js" />
+		<tags:javascript-tag src="categories/edit.js" />
+		
 		<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
 		<tags:javascript-tag src="jquery.pngFix.pack.js" />
 		<script type="text/javascript">
@@ -190,7 +193,7 @@
 							<a class="close-green">Fechar</a>
 						</div>
 					</div>
-					<div>
+					<div id="crud-content">
 						<form>
 							<p>
 								<label for="id">ID:</label><br/>

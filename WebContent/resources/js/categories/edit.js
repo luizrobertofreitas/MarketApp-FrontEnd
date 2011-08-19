@@ -6,29 +6,42 @@ $(document).ready(function() {
 /* Categories singleton class */
 var Categories = new function() {
 	
-	var idText = $('#id');
-	var nomeText = $('#nome');
-	var descricaoText = $('#descricao');
+	var idText = null;
+	var nomeText = null;
+	var descricaoText = null;
 	
-	var messageOk = $('#message-green');
-	var messageOkLeft = $('.green-left');
-	var messageError = $('#message-red');
-	var messageErrorLeft = $('.red-left');
+	var messageOk = null;
+	var messageOkLeft = null;
+	var messageError = null;
+	var messageErrorLeft = null;
 	
-	var resetButton = $('#reset');
-	var submitButton = $('#button');
+	var submitButton = null;
+	var resetButton = null;
 	
 	/* Initialize components */
 	this.init = function() {
 		
+		idText = $('#id');
+		nomeText = $('#nome');
+		descricaoText = $('#descricao');
+		
+		messageOk = $('#message-green');
+		messageOkLeft = $('.green-left');
+		messageError = $('#message-red');
+		messageErrorLeft = $('.red-left');
+		
+		submitButton = $('#button');
+		resetButton = $('#reset');
+		
 		if(idText.val() != null) {
+			messageOk.hide();
+			messageOkLeft.empty();
+			
+			messageError.hide();
+			messageErrorLeft.empty();
+			
 			Categories.load();
 		}
-		
-		/* Reset button */
-		resetButton.click(function() {
-			Categories.clear();
-		});
 		
 		/* Save button */
 		submitButton.click(function() {
@@ -49,7 +62,7 @@ var Categories = new function() {
 		messageError.hide();
 		messageErrorLeft.empty();
 		
-		idText.empty();
+		//idText.empty();
 		nomeText.empty();
 		descricaoText.empty();
 	};
@@ -66,8 +79,7 @@ var Categories = new function() {
 	
 	/* Edit category function */
 	this.load = function() {
-		$.read('/marketapp-be/resources/categories/' + idText.val().substring(1, idText.val().length), function(response){
-			
+		$.read('/marketapp-be/resources/categories/2' /*+ idText.val()*/, function(response) {
 			/* Get the common attributes in the JSON object */
 			if(response.status == 'success') {
 				messageOkLeft.append('[' + response.method + '] [' + response.status + '] - ' + response.message);
@@ -76,7 +88,7 @@ var Categories = new function() {
 				/* Load data values */
 				nomeText.val(response.category.name);
 				descricaoText.val(response.category.description);
-				
+
 				/* Disable reset button */
 				resetButton.attr('disabled', 'disabled');
 			}

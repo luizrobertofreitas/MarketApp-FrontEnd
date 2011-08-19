@@ -1,64 +1,45 @@
 /* On ready */
 $(document).ready(function() {
-	Categories.loadAll();
-	
-	/* Reload link Object */
-	$('#reload').click(function(){
-		Categories.loadAll();
-	});
+	Categories.init();
 });
 
 /* Categories singleton class */
 var Categories = new function() {
 	
+	var messageOk = null;
+	var messageOkLeft = null;
+	var messageError = null;
+	var messageErrorLeft = null;
+	
+	var reloadLink = null;
+	
+	/* Initiator method */
+	this.init = function() {
+		messageOk = $('#message-green');
+		messageOkLeft = $('.green-left');
+		messageError = $('#message-red');
+		messageErrorLeft = $('.red-left');
+		
+		reloadLink = $('#reload');
+		
+		/* Reload link Object */
+		reloadLink.click(function(){
+			Categories.loadAll();
+		});
+		
+		Categories.loadAll();
+	};
+	
 	/* Cleaning all elements */
 	this.clear = function(){
-		$('#message-green').hide();
-		$('.green-left').empty();
+		messageOk.hide();
+		messageOkLeft.empty();
 		
-		$('#message-red').hide();
-		$('.red-left').empty();
+		messageError.hide();
+		messageErrorLeft.empty();
 		
 		/* Remove all the data rows */
 		$('.data').remove();
-	};
-	
-	/* Edit category function */
-	this.edit = function(id) {
-		$.read('/marketapp-be/resources/categories/' + id.substring(1, id.length), function(response){
-			var statesdemo = {
-				state0: {
-					html: 'test 1 <br/> test1 <br/>' + response.method,
-					buttons: {Cancel: false, Next: true},
-					focus: 1,
-					submit: function(v, m, f) {
-						if(!v) {
-							return true;
-						}
-						else {
-							$.prompt.goToState('state1');							
-						}
-						return false;
-					}
-				},
-				state1: {
-					html: 'test 2 <br/> test 2 <br/>' + response.message,
-					buttons: {Back: -1, Exit: 0},
-					focus: 1,
-					submit: function(v, m, f) {
-						if (v == 0) {
-							$.prompt.close();
-						}
-						else if (v == -1) {
-							$.prompt.goToState('state0');
-						}
-						return false;
-					}
-				}
-			};
-			
-			$.prompt(statesdemo);
-		});
 	};
 	
 	/* Destroy category function */
@@ -74,13 +55,9 @@ var Categories = new function() {
 		}
 	};
 	
-	this.loadById = function(id){
-		
-	};
-	
 	/* This function loads all categories */
 	this.loadAll = function(){
-		$.read('/marketapp-be/resources/categories/list', function(response){
+		$.read('/marketapp-be/resources/categories/list', function(response) {
 			Categories.loadFromResponse(response);
 		});
 	};
@@ -92,12 +69,12 @@ var Categories = new function() {
 		
 		/* Get the common attributes in the JSON object */
 		if(response.status == 'success') {
-			$('.green-left').append('[' + response.method + '] [' + response.status + '] - ' + response.message);
-			$('#message-green').fadeIn();
+			messageOkLeft.append('[' + response.method + '] [' + response.status + '] - ' + response.message);
+			messageOk.fadeIn();
 		}
 		else {
-			$('.red-left').append('[' + response.method + '] [' + response.status + '] - ' + response.message);
-			$('#message-red').fadeIn();
+			messageErrorLeft.append('[' + response.method + '] [' + response.status + '] - ' + response.message);
+			messageError.fadeIn();
 		}
 		
 		/* Iterate over the response object */

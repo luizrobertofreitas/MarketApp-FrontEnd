@@ -124,7 +124,7 @@
 							<a class="close-green">Fechar</a>
 						</div>
 					</div>
-					<div align="center">
+					<div align="center" id="crud-content">
 						<table border="0" width="100%" cellpadding="0" cellspacing="0" id="table">
 							<tr>
 								<th><a href="">ID</a>	</th>
