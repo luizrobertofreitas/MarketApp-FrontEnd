@@ -134,6 +134,7 @@
 							</tr>											
 						</table>
 					</div>
+					<a href="<c:url value="/admin/stock/categories/edit.jsp"/>">Nova Categoria</a>
 				</div>
 			</div>
 		</div>

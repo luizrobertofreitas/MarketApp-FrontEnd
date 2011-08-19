@@ -215,6 +215,7 @@
 							</p>
 						</form>
 					</div>
+					<a href="<c:url value="/admin/stock/categories"/>">Listar</a>					
 				</div>
 			</div>
 		</div>

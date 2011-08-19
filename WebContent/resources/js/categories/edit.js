@@ -30,22 +30,17 @@ var Categories = new function() {
 		messageError = $('#message-red');
 		messageErrorLeft = $('.red-left');
 		
-		submitButton = $('#button');
+		submitButton = $('#submit');
 		resetButton = $('#reset');
 		
 		if(idText.val() != null) {
-			messageOk.hide();
-			messageOkLeft.empty();
-			
-			messageError.hide();
-			messageErrorLeft.empty();
-			
+			Categories.clear();		
 			Categories.load();
 		}
 		
 		/* Save button */
 		submitButton.click(function() {
-			if(idText.val() != null) {
+			if(idText.val().match('^(0|[1-9][0-9]*)$')) {
 				Categories.update();
 			}
 			else {
@@ -56,30 +51,67 @@ var Categories = new function() {
 	
 	/* Cleaning all elements */
 	this.clear = function() {
-		messageOk.hide();
+		messageOk.fadeOut();
 		messageOkLeft.empty();
 		
-		messageError.hide();
+		messageError.fadeOut();
 		messageErrorLeft.empty();
-		
-		//idText.empty();
-		nomeText.empty();
-		descricaoText.empty();
 	};
 	
 	/* Update the current record */
 	this.update = function() {
-		//TODO - update the current data
+		Categories.clear();
+		
+		$.update('/marketapp-be/resources/categories/update', {id: idText.val(), name: nomeText.val(), description: descricaoText.val()}, function(response){
+			if(response.status == 'success') {
+				messageOkLeft.append('[' + response.method + '] [' + response.status + '] - ' + response.message);
+				messageOk.fadeIn();
+				
+				/* Load data values */
+				nomeText.val(response.category.name);
+				descricaoText.val(response.category.description);
+
+				/* Disable reset button */
+				resetButton.attr('disabled', 'disabled');
+			}
+			else {
+				messageErrorLeft.append('[' + response.method + '] [' + response.status + '] - ' + response.message);
+				messageError.fadeIn();
+			}
+		});
 	};
 	
 	/* Create new record */
 	this.create = function() {
-		//TODO - create the current data
+		Categories.clear();
+		
+		$.create('/marketapp-be/resources/categories/create', {name: nomeText.val(), description: descricaoText.val()}, function(response) {
+			if(response.status == 'success') {
+				messageOkLeft.append('[' + response.method + '] [' + response.status + '] - ' + response.message);
+				messageOk.fadeIn();
+			
+				/* Load data values */
+				idText.val(response.category.id);
+				nomeText.val(response.category.name);
+				descricaoText.val(response.category.description);
+
+				/* Disable reset button */
+				resetButton.attr('disabled', 'disabled');
+			}
+			else {
+				messageErrorLeft.append('[' + response.method + '] [' + response.status + '] - ' + response.message);
+				messageError.fadeIn();
+			}
+		});
 	};
 	
 	/* Edit category function */
 	this.load = function() {
-		$.read('/marketapp-be/resources/categories/2' /*+ idText.val()*/, function(response) {
+		
+		nomeText.empty();
+		descricaoText.empty();
+		
+		$.read('/marketapp-be/resources/categories/' + idText.val(), function(response) {
 			/* Get the common attributes in the JSON object */
 			if(response.status == 'success') {
 				messageOkLeft.append('[' + response.method + '] [' + response.status + '] - ' + response.message);
