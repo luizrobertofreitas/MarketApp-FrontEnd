@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>MarketApp-FrontEnd</display-name>
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
+  <context-param>
+    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+	<param-value>../messages</param-value>
+  </context-param>
+  
   <security-role>
     <role-name>ADMIN</role-name>
   </security-role>
+  
   <security-role>
     <role-name>STOCK-OPERATOR</role-name>
   </security-role>
+  
   <login-config>
     <auth-method>FORM</auth-method>
     <form-login-config>
@@ -17,44 +26,56 @@
       <form-error-page>/login.jsp</form-error-page>
     </form-login-config>
   </login-config>
+  
   <security-constraint>
+  
     <web-resource-collection>
       <web-resource-name>main</web-resource-name>
       <url-pattern>/admin/*</url-pattern>
       <http-method>GET</http-method>
     </web-resource-collection>
+  
     <auth-constraint>
       <role-name>*</role-name>
     </auth-constraint>
+  
     <user-data-constraint>
       <transport-guarantee>NONE</transport-guarantee>
     </user-data-constraint>
   </security-constraint>
+  
   <security-constraint>
+  
     <web-resource-collection>
       <web-resource-name>stock</web-resource-name>
       <url-pattern>/admin/stock/*</url-pattern>
       <http-method>POST</http-method>
       <http-method>GET</http-method>
     </web-resource-collection>
+  
     <auth-constraint>
       <role-name>ADMIN</role-name>
       <role-name>STOCK-OPERATOR</role-name>
     </auth-constraint>
+  
     <user-data-constraint>
       <transport-guarantee>NONE</transport-guarantee>
     </user-data-constraint>
   </security-constraint>
+  
   <security-constraint>
+    
     <web-resource-collection>
       <web-resource-name>admin</web-resource-name>
       <url-pattern>/admin/admin/*</url-pattern>
       <http-method>POST</http-method>
       <http-method>GET</http-method>
     </web-resource-collection>
+    
     <auth-constraint>
       <role-name>ADMIN</role-name>
     </auth-constraint>
+    
     <user-data-constraint>
       <transport-guarantee>NONE</transport-guarantee>
     </user-data-constraint>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -153,7 +154,7 @@
 			$(document).ready(function(){
 				$(document).pngFix( );
 			});
-		</script>
+		</script>		
 	</head>
 	<body> 
 		<div id="page-top-outer">		
@@ -196,22 +197,22 @@
 					<div id="crud-content">
 						<form>
 							<p>
-								<label for="id">ID:</label><br/>
+								<label for="id"><fmt:message key="categories.id" />:</label><br/>
 								<input id="id" type="text" value="${param['id']}" class="input" size="7" readonly="readonly" />
 							</p>
 							<p>
-								<label for="nome">Nome:</label><br/>
+								<label for="nome"><fmt:message key="categories.name" />:</label><br/>
 								<input id="nome" type="text" class="input" />
 							</p>
 							<br/>
 							<p>
-								<label for="descricao">Descri&ccedil;&atilde;o:</label><br/>
+								<label for="descricao"><fmt:message key="categories.description" />:</label><br/>
 								<textarea id="descricao" rows="4" cols="70" class="input"></textarea>
 							</p>
 							<br/>
 							<p>
-								<input id="submit" type="button" value="Salvar" class="button" />
-								<input id="reset" type="reset" value="Limpar" class="button" />
+								<input id="submit" type="button" value="<fmt:message key="categories.save" />" class="button" />
+								<input id="reset" type="reset" value="<fmt:message key="categories.clean" />" class="button" />
 							</p>
 						</form>
 					</div>
