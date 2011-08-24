@@ -154,7 +154,7 @@
 			$(document).ready(function(){
 				$(document).pngFix( );
 			});
-		</script>		
+		</script>
 	</head>
 	<body> 
 		<div id="page-top-outer">		
@@ -175,7 +175,7 @@
 		<div id="content-outer">
 			<div id="content">
 				<div id="page-heading">
-					<h1>Editar Categoria</h1>
+					<h1><fmt:message key="categorias.edit.title" /></h1>
 				</div>
 				<div id="content-table-inner">
 					<div id="message-red">
@@ -183,7 +183,7 @@
 							
 						</div>
 						<div align="right" class="red-right">
-							<a class="close-red">Fechar</a>
+							<a class="close-red"><fmt:message key="close" /></a>
 						</div>						
 					</div>
 					<div id="message-green">
@@ -191,32 +191,32 @@
 							
 						</div>
 						<div align="right" class="green-right">
-							<a class="close-green">Fechar</a>
+							<a class="close-green"><fmt:message key="close" /></a>
 						</div>
 					</div>
 					<div id="crud-content">
 						<form>
 							<p>
-								<label for="id"><fmt:message key="categories.id" />:</label><br/>
+								<label for="id"><fmt:message key="id" />:</label><br/>
 								<input id="id" type="text" value="${param['id']}" class="input" size="7" readonly="readonly" />
 							</p>
 							<p>
-								<label for="nome"><fmt:message key="categories.name" />:</label><br/>
+								<label for="nome"><fmt:message key="name" />:</label><br/>
 								<input id="nome" type="text" class="input" />
 							</p>
 							<br/>
 							<p>
-								<label for="descricao"><fmt:message key="categories.description" />:</label><br/>
+								<label for="descricao"><fmt:message key="description" />:</label><br/>
 								<textarea id="descricao" rows="4" cols="70" class="input"></textarea>
 							</p>
 							<br/>
 							<p>
-								<input id="submit" type="button" value="<fmt:message key="categories.save" />" class="button" />
-								<input id="reset" type="reset" value="<fmt:message key="categories.clean" />" class="button" />
+								<input id="submit" type="button" value="<fmt:message key="save" />" class="button" />
+								<input id="reset" type="reset" value="<fmt:message key="clean" />" class="button" />
 							</p>
 						</form>
 					</div>
-					<a href="<c:url value="/admin/stock/categories"/>">Listar</a>					
+					<a href="<c:url value="/admin/stock/categories"/>"><fmt:message key="list" /></a>					
 				</div>
 			</div>
 		</div>

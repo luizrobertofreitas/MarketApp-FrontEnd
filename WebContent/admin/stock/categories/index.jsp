@@ -130,11 +130,11 @@
 								<th><a href="">ID</a>	</th>
 								<th><a href="">Nome</a></th>
 								<th><a href="">Descri&ccedil;&atilde;o</a></th>
-								<th><a href="">Options</a></th>
+								<th><a href="">A&ccedil;&otilde;es</a></th>
 							</tr>											
 						</table>
 					</div>
-					<a href="<c:url value="/admin/stock/categories/edit.jsp"/>">Nova Categoria</a>
+					<a href="<c:url value="/admin/stock/categories/manage.jsp"/>">Nova Categoria</a>
 				</div>
 			</div>
 		</div>

@@ -1,9 +1,23 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 
 <div class="nav">
 	<div class="table">
+		<ul class="current">
+			<li>
+				<a href="#nogo"><b>Categorias de Produtos</b></a>
+				<div class="select_sub show">
+					<ul class="sub">
+						<li class="sub_show"><a href='<c:url value="/admin/stock/categories" />'>Consultar</a></li>
+						<li><a href='<c:url value="/admin/stock/categories/manage.jsp" />'>Adicionar</a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+		
+		<div class="nav-divider">&nbsp;</div>
+	
 		<ul class="select">
 			<li>
 				<a href="#nogo"><b>Dashboard</b></a>
@@ -19,29 +33,13 @@
 		
 		<div class="nav-divider">&nbsp;</div>
 		
-		<ul class="current">
-			<li>
-				<a href="#nogo"><b>Products</b></a>
-				<div class="select_sub show">
-					<ul class="sub">
-						<li><a href="#nogo">View all products</a></li>
-						<li class="sub_show"><a href="#nogo">Add product</a></li>
-						<li><a href="#nogo">Delete products</a></li>
-					</ul>
-				</div>
-			</li>
-		</ul>
-		
-		<div class="nav-divider">&nbsp;</div>
-		
 		<ul class="select">
 			<li>
-				<a href="#nogo"><b>Categories</b></a>
+				<a href="#nogo"><b>Produtos</b></a>
 				<div class="select_sub">
 					<ul class="sub">
-						<li><a href="#nogo">Categories Details 1</a></li>
-						<li><a href="#nogo">Categories Details 2</a></li>
-						<li><a href="#nogo">Categories Details 3</a></li>
+						<li><a href="#nogo">Adicionar</a></li>
+						<li><a href="#nogo">Consultar</a></li>
 					</ul>
 				</div>
 			</li>

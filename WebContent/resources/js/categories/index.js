@@ -83,7 +83,7 @@ var Categories = new function() {
 			var nomeTd = '<td>' + obj.name + '</td>';
 			var descricaoTd = '<td>' + obj.description + '</td>';
 			var optionsTd = '<td class="options-width" align="center">' + 
-							'<a href="/marketapp-fe/admin/stock/categories/edit.jsp?id=' + obj.id + '" id="d' + obj.id + '" title="Excluir" class="info-tooltip">Editar</a> | ' +	
+							'<a href="/marketapp-fe/admin/stock/categories/manage.jsp?id=' + obj.id + '" id="d' + obj.id + '" title="Excluir" class="info-tooltip">Editar</a> | ' +	
 							'<a href="#" id="e' + obj.id + '" onclick="Categories.destroy(this.id);" title="Editar" class="info-tooltip">Excluir</a>' +
 							'</td>';
 
