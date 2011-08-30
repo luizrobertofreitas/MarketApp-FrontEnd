@@ -6,41 +6,27 @@
 <html>
 	<head>
 		<tags:head title="Market Application - Front End" />
-		<tags:javascript-tag src="jquery.pngFix.pack.js" />
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$(document).pngFix();
-			});
-		</script>
 	</head>
-	<body id="login-bg">
-
-		<div id="login-holder">
-		
-			<tags:logo />
-			<tags:clear />
-			
-			<div id="loginbox">
-				<div id="login-inner">
-					<form method="POST" action="j_security_check">
+	<body>
+		<div id="login-box" align="center">
+			<div id="login-form" class="div-corner-shadow ui-widget" title="Log in" align="left">
+				<div id="title" class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><fmt:message key="login.title" /></div>
+				<div id="login-form-content">
+					<form action="j_security_check" method="post">
 						<p>
-							<label for="j_username"><fmt:message key="login.username" /></label><br/>
-							<input id="j_username" name="j_username" type="text" class="input" size="35" />
+							<label for="j_username"><fmt:message key="username" />:</label><br/>
+							<input type="text" id="j_username" name="j_username" size="35" class="required email text ui-widget-content ui-corner-all" />
 						</p>
-						<br/>
 						<p>
-							<label for="j_password"><fmt:message key="login.password" /></label><br/>
-							<input id="j_password" name="j_password" type="password" value="************" onfocus="this.value=''" class="input" />
+							<label for="j_password"><fmt:message key="password" />:</label><br/>
+							<input type="password" id="j_password" name="j_password" size="10" class="required email text ui-widget-content ui-corner-all" />
 						</p>
-						<br/>
 						<p>
-							<input type="submit" value="<fmt:message key="login.button" />" class="button" />
+							<input type="submit" value="<fmt:message key="login.button" />" class="ui-button-text" />
 						</p>
 					</form>
 				</div>
-
-				<tags:clear />
-			</div>			
-		</div>		
+			</div>
+		</div>
 	</body>
 </html>
