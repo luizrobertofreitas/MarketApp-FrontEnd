@@ -11,7 +11,16 @@
 
 				// Accordion
 				$("#accordion").accordion({ header: "h3" });
-	
+
+				//Autocomplete
+				$("#autocomplete").autocomplete({
+					source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby", "python", "c", "scala", "groovy", "haskell", "perl"]
+				});
+
+				// Button
+				$("#button").button();
+				$("#radioset").buttonset();
+
 				// Tabs
 				$('#tabs').tabs();
 	
@@ -94,6 +103,25 @@
 				<div>Nam dui erat, auctor a, dignissim quis.</div>
 			</div>
 		</div>
+
+		<!-- Autocomplete -->
+		<h2 class="demoHeaders">Autocomplete</h2>
+		<div>
+			<input id="autocomplete" style="z-index: 100; position: relative" title="type &quot;a&quot;" />
+		</div>
+		
+
+		<!-- Button -->
+		<h2 class="demoHeaders">Button</h2>
+		<button id="button">A button element</button>
+		<form style="margin-top: 1em;">
+			<div id="radioset">
+				<input type="radio" id="radio1" name="radio" /><label for="radio1">Choice 1</label>
+				<input type="radio" id="radio2" name="radio" checked="checked" /><label for="radio2">Choice 2</label>
+				<input type="radio" id="radio3" name="radio" /><label for="radio3">Choice 3</label>
+			</div>
+		</form>
+		
 	
 		<!-- Tabs -->
 		<h2 class="demoHeaders">Tabs</h2>

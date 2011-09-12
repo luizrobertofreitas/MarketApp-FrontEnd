@@ -1,10 +1,15 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
-<div id="info-bar" class="ui-widget">
-	Você entrou como <strong><%= request.getUserPrincipal().getName() %></strong> &nbsp; <a href="#" id="accountButton"
-		class="ui-state-default ui-corner-all icon-button"> <span
-		class="ui-icon ui-icon-key"></span> Minha conta </a> &nbsp; <a href="#" id="settingsButton"
-		class="ui-state-default ui-corner-all icon-button"> <span
-		class="ui-icon ui-icon-gear"></span> Configurações </a> &nbsp; <a href="#" id="logoutButton"
-		class="ui-state-default ui-corner-all icon-button"> <span
-		class="ui-icon ui-icon-power"></span> Logout </a>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
+
+<div id="page-info" align="right" class="page-top-info">
+	<fmt:message key="you-logged-in-as" /> <strong><tags:security-username /></strong>&nbsp;
+	<button id="changePasswordButton"><fmt:message key="change-password" /></button>
+	<button id="accountButton"><fmt:message key="my-account" /></button>
+	<button id="settingsButton"><fmt:message key="settings" /></button>
+	<button id="exitButton"><fmt:message key="exit" /></button>
+</div>
+<div id="page-menu" class="page-menu">
+	<h1><fmt:message key="marketapplication" /></h1>
 </div>

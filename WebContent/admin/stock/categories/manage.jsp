@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
@@ -6,220 +6,67 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<tags:head title="Market Application - Front End - list Category" />
-
-		<!--  checkbox styling script -->
-		<tags:javascript-tag src="ui.core.js" />
-		<tags:javascript-tag src="ui.checkbox.js" />
-		<tags:javascript-tag src="jquery.bind.js" />
-		<script type="text/javascript">
-			$(function(){
-				$('input').checkBox();
-				$('#toggle-all').click(function(){
-			 	$('#toggle-all').toggleClass('toggle-checked');
-				$('#mainform input[type=checkbox]').checkBox('toggle');
-				return false;
-				});
-			});
-		</script>  
-
-		<tags:javascript-tag src="jquery.selectbox-0.5.js" />
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('.styledselect').selectbox({ inputClass: "selectbox_styled" });
-			});
-		</script>
-		 
-		<!--  styled select box script version 2 --> 
-		<tags:javascript-tag src="jquery.selectbox-0.5_style_2.js" />
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('.styledselect_form_1').selectbox({ inputClass: "styledselect_form_1" });
-				$('.styledselect_form_2').selectbox({ inputClass: "styledselect_form_2" });
-			});
-		</script>
+		<tags:head title="Market Application - Front End" />
+		<!--
+		<tags:resource-tag type="css" value="js/jquery-table/media/css/demo_table.css" />
+		<tags:resource-tag type="javascript" value="js/jquery-table/media/js/jquery.dataTables.min.js" />
+		-->
+		<tags:resource-tag type="javascript" value="js/application/categories/manage.js" />
 		
-		<!--  styled select box script version 3 --> 
-		<tags:javascript-tag src="jquery.selectbox-0.5_style_2.js" />
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('.styledselect_pages').selectbox({ inputClass: "styledselect_pages" });
-			});
-		</script>
-		
-		<!--  styled file upload script --> 
-		<tags:javascript-tag src="jquery.filestyle.js" />
-		<script type="text/javascript" charset="utf-8">
-			$(function() {
-				$("input.file_1").filestyle({ 
-				image: "images/forms/upload_file.gif",
-				imageheight : 29,
-				imagewidth : 78,
-				width : 300
-				});
-			});
-		</script>
-		
-		<!-- Custom jquery scripts -->
-		<tags:javascript-tag src="custom_jquery.js" />
-		<tags:javascript-tag src="jquery.filestyle.js" />
-		 
-		<!-- Tooltips -->
-		<tags:javascript-tag src="jquery.tooltip.js" />
-		<tags:javascript-tag src="jquery.dimensions.js" />
-		<script type="text/javascript">
-			$(function() {
-				$('a.info-tooltip ').tooltip({
-					track: true,
-					delay: 0,
-					fixPNG: true, 
-					showURL: false,
-					showBody: " - ",
-					top: -35,
-					left: 5
-				});
-			});
-		</script> 
-		
-		<!--  date picker script -->
-		<tags:stylesheet-tag href="datePicker.css" />
-		<tags:javascript-tag src="date.js" />
-		<tags:javascript-tag src="jquery.datePicker.js" />
-		<script type="text/javascript" charset="utf-8">
-			$(function() {
-		
-			// initialise the "Select date" link
-			// associate the link with a date picker
-			$('#date-pick').datePicker({createButton:false, startDate:'01/01/2005', endDate:'31/12/2020'}).bind(
-					// when the link is clicked display the date picker
-					'click',
-					function()
-					{
-						updateSelects($(this).dpGetSelected()[0]);
-						$(this).dpDisplay();
-						return false;
-					}
-				).bind(
-					// when a date is selected update the SELECTs
-					'dateSelected',
-					function(e, selectedDate, $td, state)
-					{
-						updateSelects(selectedDate);
-					}
-				).bind(
-					'dpClosed',
-					function(e, selected)
-					{
-						updateSelects(selected[0]);
-					}
-				);
-				
-			var updateSelects = function (selectedDate)
-			{
-				var selectedDate = new Date(selectedDate);
-				$('#d option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
-				$('#m option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
-				$('#y option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
-			}
-			// listen for when the selects are changed and update the picker
-			$('#d, #m, #y')
-				.bind(
-					'change',
-					function()
-					{
-						var d = new Date(
-									$('#y').val(),
-									$('#m').val()-1,
-									$('#d').val()
-								);
-						$('#date-pick').dpSetSelected(d.asString());
-					}
-				);
-			
-			// default the position of the selects to today
-			var today = new Date();
-				updateSelects(today.getTime());
-				
-				// and update the datePicker to reflect it...
-				$('#d').trigger('change');
-			});
-		</script>
-		
-		<tags:javascript-tag src="rest/jquery.rest.js" />
-		<tags:javascript-tag src="categories/edit.js" />
-		
-		<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
-		<tags:javascript-tag src="jquery.pngFix.pack.js" />
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$(document).pngFix( );
-			});
-		</script>
 	</head>
-	<body> 
-		<div id="page-top-outer">		
-			<tags:page-top />		
-		</div>			
-		<tags:clear />
-		 
-		<div class="nav-outer-repeat"> 
-			<div class="nav-outer">			
-				<tags:personal-menu-right />
-				<tags:stock-menu />
+	<body>
+		<tags:common-dialogs />
+		<div id="newCategoryDialog" title="<fmt:message key="categories" />" class="dialog">
+			<p class="validateTips"><fmt:message key="all-fields-are-required" /></p>
+			<form id="form-data">
+				<fieldset>
+					<label for="id"><fmt:message key="id" /></label>
+					<input type="text" name="id" id="id" class="text ui-widget-content ui-corner-all" readonly="readonly" />
+					<label for="name"><fmt:message key="name" /></label>
+					<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+					<label for="description"><fmt:message key="description" /></label>
+					<textarea rows="4" cols="50" id="description" name="description" class="ui-widget-content ui-corner-all" ></textarea>
+				</fieldset>
+			</form>
+			<div id="dialogMessages" class="ui-widget dialog-messages">
 			</div>
-			<tags:clear />
 		</div>
 		
-		<tags:clear />
-		 
-		<div id="content-outer">
-			<div id="content">
-				<div id="page-heading">
-					<h1><fmt:message key="categorias.edit.title" /></h1>
-				</div>
-				<div id="content-table-inner">
-					<div id="message-red">
-						<div align="left" class="red-left">
-							
-						</div>
-						<div align="right" class="red-right">
-							<a class="close-red"><fmt:message key="close" /></a>
-						</div>						
-					</div>
-					<div id="message-green">
-						<div align="left" class="green-left">
-							
-						</div>
-						<div align="right" class="green-right">
-							<a class="close-green"><fmt:message key="close" /></a>
-						</div>
-					</div>
-					<div id="crud-content">
-						<form>
-							<p>
-								<label for="id"><fmt:message key="id" />:</label><br/>
-								<input id="id" type="text" value="${param['id']}" class="input" size="7" readonly="readonly" />
-							</p>
-							<p>
-								<label for="nome"><fmt:message key="name" />:</label><br/>
-								<input id="nome" type="text" class="input" />
-							</p>
-							<br/>
-							<p>
-								<label for="descricao"><fmt:message key="description" />:</label><br/>
-								<textarea id="descricao" rows="4" cols="70" class="input"></textarea>
-							</p>
-							<br/>
-							<p>
-								<input id="submit" type="button" value="<fmt:message key="save" />" class="button" />
-								<input id="reset" type="reset" value="<fmt:message key="clean" />" class="button" />
-							</p>
-						</form>
-					</div>
-					<a href="<c:url value="/admin/stock/categories"/>"><fmt:message key="list" /></a>					
-				</div>
-			</div>
+		<div id="page-top" class="ui-widget ui-widget-header page-top">
+			<tags:info />			
 		</div>
-		<tags:footer />	 
+		
+		<tags:menu />
+		
+		<div id="content" class="content ui-widget">
+			<h1><fmt:message key="categories" /></h1>
+				
+			<table id="categories" class="ui-widget ui-widget-content display datatable" cellspacing="2" cellpadding="2">
+				<!-- 
+				<thead>
+				-->
+					<tr class="ui-widget-header ">
+						<th align="center"><fmt:message key="id" /></th>
+						<th align="left"><fmt:message key="name" /></th>
+						<th align="left"><fmt:message key="description" /></th>
+						<th align="center"><fmt:message key="options" /></th>
+					</tr>
+				<!--
+				</thead>
+				<tbody>
+				</tbody>
+				-->
+			</table>
+			<div id="content-table-pagination" class="content-table-pagination" align="right">
+				<a href="#"><fmt:message key="previous" /></a> <a href="#">1</a> <a href="#"><fmt:message key="next" /></a>
+			</div>
+			<div id="contentMessages" class="ui-widget">
+			</div>
+			<hr />
+			<button id="newCategoryButton" class="ui-state-default ui-corner-all icon-button">
+				<fmt:message key="categories.new" />
+			</button>
+		</div>
+		<tags:footer />
 	</body>	
 </html>

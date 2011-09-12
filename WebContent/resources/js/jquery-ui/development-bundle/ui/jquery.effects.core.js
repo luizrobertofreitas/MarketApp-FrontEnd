@@ -1,5 +1,5 @@
 /*
- * jQuery UI Effects 1.8.16
+ * jQuery UI Effects 1.8.15
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -306,7 +306,7 @@ $.fn.extend({
 /******************************************************************************/
 
 $.extend($.effects, {
-	version: "1.8.16",
+	version: "1.8.15",
 
 	// Saves a set of properties in a data storage
 	save: function(element, set) {
@@ -367,16 +367,9 @@ $.extend($.effects, {
 					border: 'none',
 					margin: 0,
 					padding: 0
-				}),
-			active = document.activeElement;
+				});
 
 		element.wrap(wrapper);
-
-		// Fixes #7595 - Elements lose focus when wrapped.
-		if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
-			$( active ).focus();
-		}
-		
 		wrapper = element.parent(); //Hotfix for jQuery 1.4 since some change in wrap() seems to actually loose the reference to the wrapped element
 
 		// transfer positioning properties to the wrapper
@@ -401,18 +394,8 @@ $.extend($.effects, {
 	},
 
 	removeWrapper: function(element) {
-		var parent,
-			active = document.activeElement;
-		
-		if (element.parent().is('.ui-effects-wrapper')) {
-			parent = element.parent().replaceWith(element);
-			// Fixes #7595 - Elements lose focus when wrapped.
-			if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
-				$( active ).focus();
-			}
-			return parent;
-		}
-			
+		if (element.parent().is('.ui-effects-wrapper'))
+			return element.parent().replaceWith(element);
 		return element;
 	},
 

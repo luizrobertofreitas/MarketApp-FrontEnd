@@ -6,17 +6,21 @@ var Products = new function(){
 	
 	var newCategoryButton = null;
 	var newCategoryDialog = null;
+	var categoriesTable = null;
 	
 	this.init = function() {
 		
 		newCategoryButton = $('#newCategoryButton');
 		newCategoryDialog = $('#newCategoryDialog');
+		categoriesTable = $('#categories');
 		
+		/* Dialog configuration */
 		newCategoryDialog.dialog({
 			autoOpen: false,
-			width: 500,
-			height: 350,
+			width: 400,
+			height: 300,
 			modal: true,
+			resizable: false,
 			buttons: {
 				"Salvar": function() {
 					
@@ -35,14 +39,17 @@ var Products = new function(){
 			}
 		});
 		
+		/* Buttons configuration */
+		newCategoryButton.button({
+			icons : {
+				primary : 'ui-icon-circle-plus'
+			},
+			text : true
+		});
+		
 		newCategoryButton.click(function(){
 			newCategoryDialog.dialog('open');
 			return false;
 		});
-		
-		addCategoryLink.click(function(){
-			
-		});
 	};
-	
 };

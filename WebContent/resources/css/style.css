@@ -1,20 +1,19 @@
-label,input {
-	display: block;
+body { font-size: 72.5%; }
+
+.page-top-info {
+	padding: 5px;
 }
 
-input.text {
-	margin-bottom: 12px;
-	width: 50%;
-	padding: .4em;
+.page-menu {
+	padding: 10px 10px 15px 10px;
 }
 
-fieldset {
-	padding: 0;
-	border: 0;
-	margin-top: 25px;
+h1 {
+	font-size: 20px;
 }
 
-.div-corner-shadow {
+.content {
+	/*
 	-webkit-box-shadow: 0px 0px 15px 0px #949494;
 	-moz-box-shadow: 0px 0px 15px 0px #949494;
 	box-shadow: 0px 0px 15px 0px #949494;
@@ -22,71 +21,82 @@ fieldset {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border: 1px solid lightgray;
+	*/
 	padding: 15px;
 	margin: 20px;
+	height: 100%;
 }
 
-.div-page-logo {
-	background: lightblue;
-	padding: 20px;
-	border-right: 1px solid black;
-	border-left: 1px solid black;
+.content table {
+	width: 100%;
+	border: 1px solid #4297D7;
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
-div#crud-content {
-	height: 400px;
+.content table tr td {
+	padding: 8px;
+	border-right: 1px solid #4297D7;
+	text-align: center;
 }
 
-div#crud-content table {
-	margin: 1em 0;
-	border-collapse: collapse;
-	width: 70%;
+.content table tr th {
+	padding: 8px;
+	border-right: 1px solid #4297D7;
+	text-align: center;
+	font-size: 14px;
 }
 
-div#crud-content table td,div#crud-content table th {
-	border: 1px solid #eee;
-	padding: .6em 10px;
-	text-align: left;
+.content a {
+	font-size: 12px;
+	color: #4297D7;
+	text-decoration: underline;
+	
 }
 
-.ui-dialog .ui-state-error {
-	padding: .3em;
-}
-
-.validateTips {
-	border: 1px solid transparent;
-	padding: 0.3em;
-}
-
-.icon-button {
-	padding: .4em 1em .4em 20px;
+.content a:hover {
+	color: black;
 	text-decoration: none;
-	position: relative;
 }
 
-.icon-button span.ui-icon {
-	margin: 0 5px 0 0;
-	position: absolute;
-	left: .2em;
-	top: 50%;
-	margin-top: -8px;
+.content hr {
+	background: #4297D7;
+	height: 0.5px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
-.form-content {
-	margin: 20px;
-	padding: 5px;
+.dialog {
+	font-size: 12px;
+	width: 250px;
+	height: 350px;
 }
+
+label, input { display:block; }
+label { 
+	color: #4297D7;
+	font-weight: bold;
+}
+input.text { margin-bottom:12px; width:95%; padding: .4em; }
+fieldset { padding:0; border:0; margin-top:25px; }
+.ui-dialog .ui-state-error { padding: .3em; }
+.validateTips { border: 1px solid transparent; padding: 0.3em; }
 
 .footer {
-	color: gray;
-	height: 70px;
-	margin: 80px auto 0px auto;
-	padding: 20px;
-	font-size: 16px;
+	position: absolute;
+	bottom: 0;
+	background: #2191C0;
+	border-top: 1px solid #4297D7;
+	color: white;
+	font-size: 14px;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 .footer a {
-	color: black;
+	text-decoration: underline;
+	color: white;
 	font-size: 16px;
 }
 
@@ -94,48 +104,38 @@ div#crud-content table td,div#crud-content table th {
 	text-decoration: none;
 }
 
-.footer hr {
-	width: 70%;
-	color: gray;
-	margin: 20px;
+/* First line in the table, just for an example */
+.first-line {
+	visibility: hidden;
 }
 
-#info-bar {
-	text-align: right;
-	padding: 10px;
-	font-size: 12px;
+/* Zebra table style */
+.alternate-row {
+	background: lightgray;
 }
 
-#menu-bar {
-	padding: 10px;
+.dialog-messages {
+	margin-top: 5px;
 }
 
-.dialog {
-	font-size: 12px;
-	width: auto;
-	height: auto;
+.notification
+{
+	font-size: medium;
+	background-color: #F7F7F7;
+	color: #606060;
+	border: 1px solid #606060;
 }
-
-.ui-button-text {
-	font-size: 12px;
+.success
+{
+	border: 1px solid #25541F;
+	font-size: medium;
+	background-color: #acfa58;
+	color: #25541F;
 }
-
-#page-top {
-	font-size: 12px;
-}
-
-#login-form {
-	width: 400px;
-	height: 230px;
-	margin: 150px
-}
-
-#login-form-content {
-	margin: 10px;
-	padding: 10px;
-}
-
-#title {
-	margin: 5px;
-	padding: 5px;
+.fail
+{
+	border: 1px solid #fe2e2e
+	font-size: medium;
+	background-color: #fe2e2e;
+	color: white;
 }

@@ -7,32 +7,37 @@
 <html>
 	<head>
 		<tags:head title="Market Application - Front End" />
+		<!--
+		<tags:resource-tag type="css" value="js/jquery-table/media/css/demo_table.css" />
+		<tags:resource-tag type="javascript" value="js/jquery-table/media/js/jquery.dataTables.min.js" />
+		-->
 		<tags:resource-tag type="javascript" value="js/application/products/manage.js" />
+		
 	</head>
 	<body>
 		<tags:common-dialogs />
 		<div id="newCategoryDialog" title="Nova Categoria" class="dialog">
-			<div class="form-content">
-				<form id="form-data">
-					<fieldset>
-						<label for="name">Name</label>
-						<input type="text" size="30" name="name" id="name" class="required email text ui-widget-content ui-corner-all" />
-						<label for="description">Descri&ccedil;&atilde;o</label>		
-						<textarea rows="4" cols="50" id="description" name="description" class="required text ui-widget-content ui-corner-all" ></textarea>
-					</fieldset>
-				</form>
-			</div>			
+			<p class="validateTips">Todos os campos são obrigatórios.</p>
+			<form id="form-data">
+				<fieldset>
+					<label for="name">Nome</label>
+					<input type="text" name="name" id="name" class="required email text ui-widget-content ui-corner-all" />
+					<label for="description">Descri&ccedil;&atilde;o</label>
+					<textarea rows="4" cols="50" id="description" name="description" class="required text ui-widget-content ui-corner-all" ></textarea>
+				</fieldset>
+			</form>
 		</div>
 		
-		<div id="page-top" class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix">
-			<tags:info />
-			<tags:menu />
+		<div id="page-top" class="ui-widget ui-widget-header page-top">
+			<tags:info />			
 		</div>
 		
-		<div id="crud-content" class="ui-widget div-corner-shadow">
+		<tags:menu />
+		
+		<div id="content" class="content ui-widget">
 			<h1>Categorias</h1>
 				
-			<table id="categories" class="ui-widget ui-widget-content">
+			<table id="categories" class="ui-widget ui-widget-content display" cellspacing="2" cellpadding="2">
 				<thead>
 					<tr class="ui-widget-header ">
 						<th>ID</th>
@@ -43,21 +48,27 @@
 			
 				</thead>
 				<tbody>
-					<tr class="data">
+					<tr>
 						<td>1</td>
-						<td>Portas</td>
-						<td>Portas de todos os tipos</td>
-						<td>
-							Test
-						</td>
+						<td>Porta de Correr</td>
+						<td>Porta que corre pra lá e pra cá</td>
+						<td><a href="#">Editar</a> <a href="#">Excluir</a></td>
 					</tr>
-					
+					<tr>
+						<td>2</td>
+						<td>Fechaduras</td>
+						<td>Fechaduras para Portas em Geral</td>
+						<td><a href="#">Editar</a> <a href="#">Excluir</a></td>
+					</tr>
 				</tbody>
 			</table>
-			<a id="newCategoryButton" href="#" class="ui-state-default ui-corner-all icon-button">
-				<span class="ui-icon ui-icon-circle-plus"></span>
+			<div id="content-table-pagination" class="content-table-pagination" align="right">
+				<a href="#">Anterior</a> <a href="#">1</a> <a href="#">Próximo</a>
+			</div>
+			<hr />
+			<button id="newCategoryButton" class="ui-state-default ui-corner-all icon-button">
 				Nova Categoria
-			</a>
+			</button>
 		</div>
 		<tags:footer />
 	</body>	

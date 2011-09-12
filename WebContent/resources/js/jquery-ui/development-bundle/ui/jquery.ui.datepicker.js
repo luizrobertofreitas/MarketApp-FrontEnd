@@ -1,5 +1,5 @@
 /*
- * jQuery UI Datepicker 1.8.16
+ * jQuery UI Datepicker 1.8.15
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -12,7 +12,7 @@
  */
 (function( $, undefined ) {
 
-$.extend($.ui, { datepicker: { version: "1.8.16" } });
+$.extend($.ui, { datepicker: { version: "1.8.15" } });
 
 var PROP_NAME = 'datepicker';
 var dpuuid = new Date().getTime();
@@ -625,7 +625,6 @@ $.extend(Datepicker.prototype, {
 	},
 
 	/* Pop-up the date picker for a given input field.
-       If false returned from beforeShow event handler do not show. 
 	   @param  input  element - the input field attached to the date picker or
 	                  event - if triggered by focus */
 	_showDatepicker: function(input) {
@@ -642,12 +641,7 @@ $.extend(Datepicker.prototype, {
 			$.datepicker._curInst.dpDiv.stop(true, true);
 		}
 		var beforeShow = $.datepicker._get(inst, 'beforeShow');
-		var beforeShowSettings = beforeShow ? beforeShow.apply(input, [input, inst]) : {};
-		if(beforeShowSettings === false){
-            //false
-			return;
-		}
-		extendRemove(inst.settings, beforeShowSettings);
+		extendRemove(inst.settings, (beforeShow ? beforeShow.apply(input, [input, inst]) : {}));
 		inst.lastVal = null;
 		$.datepicker._lastInput = input;
 		$.datepicker._setDateFromField(inst);
@@ -930,8 +924,7 @@ $.extend(Datepicker.prototype, {
 		else {
 			this._hideDatepicker();
 			this._lastInput = inst.input[0];
-			if (typeof(inst.input[0]) != 'object')
-				inst.input.focus(); // restore focus
+			inst.input.focus(); // restore focus
 			this._lastInput = null;
 		}
 	},
@@ -1391,6 +1384,14 @@ $.extend(Datepicker.prototype, {
 		if (inst.input) {
 			inst.input.val(clear ? '' : this._formatDate(inst));
 		}
+
+		var onSelect = this._get(inst, 'onSelect');
+		if (onSelect) {
+			var dateStr = this._formatDate(inst);
+
+			// trigger custom callback
+			onSelect.apply((inst.input ? inst.input[0] : null), [dateStr, inst]);
+		}
 	},
 
 	/* Retrieve the date(s) directly. */
@@ -1814,7 +1815,7 @@ $.fn.datepicker = function(options){
 $.datepicker = new Datepicker(); // singleton instance
 $.datepicker.initialized = false;
 $.datepicker.uuid = new Date().getTime();
-$.datepicker.version = "1.8.16";
+$.datepicker.version = "1.8.15";
 
 // Workaround for #4055
 // Add another global to avoid noConflict issues with inline event handlers

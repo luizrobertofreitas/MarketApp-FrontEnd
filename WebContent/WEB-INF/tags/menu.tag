@@ -1,116 +1,64 @@
-<div id="menu-bar">
-	<div id="menu">
-		<ul class="menu">
-			<li><a href="#" class="parent"><span>Home</span>
-			</a>
-				<div>
-					<ul>
-						<li><a href="#" class="parent"><span>Sub Item 1</span>
-						</a>
-							<div>
-								<ul>
-									<li><a href="#" class="parent"><span>Sub Item
-												1.1</span>
-									</a>
-										<div>
-											<ul>
-												<li><a href="#"><span>Sub Item 1.1.1</span>
-												</a>
-												</li>
-												<li><a href="#"><span>Sub Item 1.1.2</span>
-												</a>
-												</li>
-											</ul>
-										</div></li>
-									<li><a href="#"><span>Sub Item 1.2</span>
-									</a>
-									</li>
-									<li><a href="#"><span>Sub Item 1.3</span>
-									</a>
-									</li>
-									<li><a href="#"><span>Sub Item 1.4</span>
-									</a>
-									</li>
-									<li><a href="#"><span>Sub Item 1.5</span>
-									</a>
-									</li>
-									<li><a href="#"><span>Sub Item 1.6</span>
-									</a>
-									</li>
-									<li><a href="#" class="parent"><span>Sub Item
-												1.7</span>
-									</a>
-										<div>
-											<ul>
-												<li><a href="#"><span>Sub Item 1.7.1</span>
-												</a>
-												</li>
-												<li><a href="#"><span>Sub Item 1.7.2</span>
-												</a>
-												</li>
-											</ul>
-										</div></li>
-								</ul>
-							</div></li>
-						<li><a href="#"><span>Sub Item 2</span>
-						</a>
-						</li>
-						<li><a href="#"><span>Sub Item 3</span>
-						</a>
-						</li>
-					</ul>
-				</div></li>
-			<li><a href="#"><span>Product Info</span>
-			</a>
-				<div>
-					<ul>
-						<li><a href="#" class="parent"><span>Sub Item 1</span>
-						</a>
-							<div>
-								<ul>
-									<li><a href="#"><span>Sub Item 1.1</span>
-									</a>
-									</li>
-									<li><a href="#"><span>Sub Item 1.2</span>
-									</a>
-									</li>
-								</ul>
-							</div></li>
-						<li><a href="#" class="parent"><span>Sub Item 2</span>
-						</a>
-							<div>
-								<ul>
-									<li><a href="#"><span>Sub Item 2.1</span>
-									</a>
-									</li>
-									<li><a href="#"><span>Sub Item 2.2</span>
-									</a>
-									</li>
-								</ul>
-							</div></li>
-						<li><a href="#"><span>Sub Item 3</span>
-						</a>
-						</li>
-						<li><a href="#"><span>Sub Item 4</span>
-						</a>
-						</li>
-						<li><a href="#"><span>Sub Item 5</span>
-						</a>
-						</li>
-						<li><a href="#"><span>Sub Item 6</span>
-						</a>
-						</li>
-						<li><a href="#"><span>Sub Item 7</span>
-						</a>
-						</li>
-					</ul>
-				</div></li>
-			<li><a href="#"><span>Help</span>
-			</a>
-			</li>
-			<li class="last"><a href="#"><span>Contacts</span>
-			</a>
-			</li>
-		</ul>
-	</div>
+<%@ tag language="java" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
+
+<div class="menu">
+	<ul>
+		<li>
+			<a href="#"><fmt:message key="stock" /><span class="arrow"></span> </a>
+			<ul>
+				<li>
+					<a href="<c:url value="/admin/stock/categories/manage.jsp" />"><fmt:message key="categories" /></a>
+				</li>
+				<li>
+					<a href="<c:url value="/admin/stock/products/manage.jsp" />"><fmt:message key="products" /></a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">Plugins<span class="arrow"></span> </a>
+			<ul>
+				<li>
+					<a href="#">Galleries</a>
+				</li>
+				<li>
+					<a href="#">DropDown Menus</a>
+				</li>
+				<li>
+					<a href="#">Content Slider</a>
+				</li>
+				<li>
+					<a href="#">LightBox</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">Friend Sites<span class="arrow"></span> </a>
+			<ul>
+				<li>
+					<a href="www.htmldrive.net">www.htmldrive.net</a>
+				</li>
+				<li>
+					<a href="www.htmldrive.net">www.jquery.com</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">Contact<span class="arrow"></span> </a>
+			<ul>
+				<li>
+					<a href="http://www.twitter.com/htmldrive">Follow us on Twitter</a>
+				</li>
+				<li>
+					<a href="#">Facebook</a>
+				</li>
+				<li>
+					<a href="#">Rss</a>
+				</li>
+				<li>
+					<a href="#">e-mail</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
 </div>
