@@ -6,11 +6,17 @@
 <html>
 	<head>
 		<tags:head title="Market Application - Front End" />
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#loginSubmit').button();
+			});
+		</script>
 	</head>
 	<body>
 		<div id="login-box" align="center">
-			<div id="login-form" class="div-corner-shadow ui-widget" title="Log in" align="left">
-				<div id="title" class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><fmt:message key="login.title" /></div>
+			<div id="login-form" class="login-form-div div-corner-shadow ui-widget ui-corner-all" title="Log in" align="left">
+				<div id="title" class="login-form-div-header ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><fmt:message key="login.title" /></div>
 				<div id="login-form-content">
 					<form action="j_security_check" method="post">
 						<p>
@@ -22,7 +28,7 @@
 							<input type="password" id="j_password" name="j_password" size="10" class="required email text ui-widget-content ui-corner-all" />
 						</p>
 						<p>
-							<input type="submit" value="<fmt:message key="login.button" />" class="ui-button-text" />
+							<input id="loginSubmit" type="submit" value="<fmt:message key="login.button" />" class="ui-button-text" />
 						</p>
 					</form>
 				</div>

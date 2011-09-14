@@ -139,3 +139,21 @@ fieldset { padding:0; border:0; margin-top:25px; }
 	background-color: #fe2e2e;
 	color: white;
 }
+
+.login-form-div-header {
+	padding: 5px;
+	margin-bottom: 15px;
+}
+
+.login-form-div {
+	width: 360px;
+	height: 220px;
+	margin-top: 200px;
+	padding: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 0px 15px 0px #949494;
+	-moz-box-shadow: 0px 0px 15px 0px #949494;
+	box-shadow: 0px 0px 15px 0px #949494;
+}
