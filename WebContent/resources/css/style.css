@@ -23,7 +23,7 @@ h1 {
 	border: 1px solid lightgray;
 	*/
 	padding: 15px;
-	margin: 20px;
+	margin: 10px 10px 30px 10px;
 	height: 100%;
 }
 
@@ -36,25 +36,59 @@ h1 {
 
 .content table tr td {
 	padding: 8px;
-	border-right: 1px solid #4297D7;
+	border-right: 1px solid #4297D7;	
+}
+
+.content table tr td.number {
+	text-align: right;
+	width: 120px;
+}
+
+.content table tr td.options {
 	text-align: center;
+	width: 200px;
+}
+
+.content table tr td.string {
+	text-align: left;
+	width: 200px;
+}
+
+.content table tr td.codigo {
+	text-align: center;
+	width: 70px;
 }
 
 .content table tr th {
 	padding: 8px;
 	border-right: 1px solid #4297D7;
-	text-align: center;
 	font-size: 14px;
 }
 
-.content a {
+.content table tfoot tr td {
+	padding: 8px;
+	border-right: 1px solid #4297D7;
+	font-size: 14px;
+}
+
+.content table a {
+	font-size: 14px;
+	color: white;
+	text-decoration: none;
+}
+
+.content table a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+.content .options a {
 	font-size: 12px;
 	color: #4297D7;
 	text-decoration: underline;
-	
 }
 
-.content a:hover {
+.content .options a:hover {
 	color: black;
 	text-decoration: none;
 }
@@ -64,6 +98,10 @@ h1 {
 	height: 0.5px;
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+.content-search {
+	margin-bottom: 10px;
 }
 
 .dialog {
@@ -77,11 +115,15 @@ label {
 	color: #4297D7;
 	font-weight: bold;
 }
-input.text { margin-bottom:12px; width:95%; padding: .4em; }
+
+.text { margin-bottom:12px; padding: .4em; }
+.text-right-aligned { text-align: right; }
+
 fieldset { padding:0; border:0; margin-top:25px; }
 .ui-dialog .ui-state-error { padding: .3em; }
 .validateTips { border: 1px solid transparent; padding: 0.3em; }
 
+/*
 .footer {
 	position: absolute;
 	bottom: 0;
@@ -90,6 +132,19 @@ fieldset { padding:0; border:0; margin-top:25px; }
 	color: white;
 	font-size: 14px;
 	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+*/
+
+.footer {
+	position: relative;
+	margin-top: -20px;
+	height: 20px;
+	clear: both;
+	color: white;
+	font-size: 14px;
+	background: #2191C0;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
@@ -141,19 +196,23 @@ fieldset { padding:0; border:0; margin-top:25px; }
 }
 
 .login-form-div-header {
-	padding: 5px;
+	padding: 8px;
 	margin-bottom: 15px;
 }
 
 .login-form-div {
-	width: 360px;
+	width: 330px;
 	height: 220px;
 	margin-top: 200px;
-	padding: 5px;
+	padding: 8px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	-webkit-box-shadow: 0px 0px 15px 0px #949494;
 	-moz-box-shadow: 0px 0px 15px 0px #949494;
 	box-shadow: 0px 0px 15px 0px #949494;
+}
+
+.tabs-area {
+	margin: 10px 10px 30px 10px;
 }

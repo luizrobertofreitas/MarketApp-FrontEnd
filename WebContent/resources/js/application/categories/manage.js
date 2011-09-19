@@ -155,10 +155,10 @@ var Categories = new function(){
 		
 		/* Iterate over the response object */
 		$.each(response.categories, function(index, obj) {
-			var idTd = '<td align="center">' + obj.id + '</td>';
-			var nomeTd = '<td align="left">' + obj.name + '</td>';
-			var descricaoTd = '<td align="left">' + obj.description + '</td>';
-			var optionsTd = '<td align="center">' + 
+			var idTd = '<td class="codigo">' + obj.id + '</td>';
+			var nomeTd = '<td class="string">' + obj.name + '</td>';
+			var descricaoTd = '<td class="string">' + obj.description + '</td>';
+			var optionsTd = '<td class="options">' + 
 							'<a href="#" onclick="Categories.load(' + obj.id + ');">Editar</a> ' +	
 							'<a href="#" onclick="Categories.destroy(' + obj.id +');">Excluir</a>' +
 							'</td>';

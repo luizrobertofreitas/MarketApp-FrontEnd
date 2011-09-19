@@ -17,5 +17,4 @@
 			</td>				
 		</tr>
 	</table>
-	<tags:clear />
 </div>

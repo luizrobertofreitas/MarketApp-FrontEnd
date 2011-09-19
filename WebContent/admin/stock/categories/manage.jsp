@@ -46,10 +46,10 @@
 				<thead>
 				-->
 					<tr class="ui-widget-header ">
-						<th align="center"><fmt:message key="id" /></th>
-						<th align="left"><fmt:message key="name" /></th>
-						<th align="left"><fmt:message key="description" /></th>
-						<th align="center"><fmt:message key="options" /></th>
+						<th><fmt:message key="id" /></th>
+						<th><fmt:message key="name" /></th>
+						<th><fmt:message key="description" /></th>
+						<th><fmt:message key="options" /></th>
 					</tr>
 				<!--
 				</thead>

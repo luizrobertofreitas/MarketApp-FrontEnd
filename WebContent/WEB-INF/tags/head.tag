@@ -24,6 +24,10 @@
 <!-- JQuery notification bar -->
 <tags:resource-tag type="javascript" value="js/jquery-notification/jquery.showMessage.min.js" />
 
+<!-- JQuery input mask -->
+<tags:resource-tag type="javascript" value="js/jquery-input-mask/jquery.maskedinput-1.3.min.js" />
+<tags:resource-tag type="javascript" value="js/jquery-input-mask/jquery.maskMoney.js" />
+
 <!-- Application scope JS library -->
 <tags:resource-tag type="javascript" value="js/application/shared/app.js" />
 

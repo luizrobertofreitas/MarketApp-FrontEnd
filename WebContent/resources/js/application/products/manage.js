@@ -4,34 +4,44 @@ $(document).ready(function(){
 
 var Products = new function(){
 	
-	var newCategoryButton = null;
-	var newCategoryDialog = null;
-	var categoriesTable = null;
+	var newProductButton = null;
+	var newProductDialog = null;
+	var productsTable = null;
+	
+	var productId = null;
+	var productName = null; 
+	var productDescription = null;
+	var productPrice = null;
+	var productQuantity = null;
 	
 	this.init = function() {
 		
-		newCategoryButton = $('#newCategoryButton');
-		newCategoryDialog = $('#newCategoryDialog');
-		categoriesTable = $('#categories');
+		/* Inputs */
+		productId = $('#productId');
+		productName = $('#productName');
+		productDescription = $('#productDescription');
+		productPrice = $('#productPrice');
+		productQuantity = $('#productQuantity');
+		
+		/* Inputs configuration */
+		productPrice.maskMoney({symbol:'R$ ', showSymbol:false, thousands:'.', decimal:',', symbolStay: true});
+		productQuantity.maskMoney({thousands:'.', allowZero: true, allowNegative: false, defaultZero: true, precision: 0});
+		
+		newProductButton = $('#newProductButton');
+		newProductDialog = $('#newProductDialog');
+		productsTable = $('#productsTable');
 		
 		/* Dialog configuration */
-		newCategoryDialog.dialog({
+		newProductDialog.dialog({
 			autoOpen: false,
-			width: 400,
-			height: 300,
+			width: 'auto',
+			height: 'auto',
 			modal: true,
 			resizable: false,
 			buttons: {
 				"Salvar": function() {
 					
-					//$('#form-data').validate();
 					
-					var newTr = '<tr>';
-					newTr += '<td>2</td><td>' + name.val() + '</td><td>' + description.val() + '</td><td>Go</td></tr>';
-					
-					$('table tr:last').after(newTr);
-												
-					$(this).dialog("close");
 				}, 
 				"Cancelar": function() { 
 					$(this).dialog("close"); 
@@ -40,15 +50,15 @@ var Products = new function(){
 		});
 		
 		/* Buttons configuration */
-		newCategoryButton.button({
+		newProductButton.button({
 			icons : {
 				primary : 'ui-icon-circle-plus'
 			},
 			text : true
 		});
 		
-		newCategoryButton.click(function(){
-			newCategoryDialog.dialog('open');
+		newProductButton.click(function(){
+			newProductDialog.dialog('open');
 			return false;
 		});
 	};

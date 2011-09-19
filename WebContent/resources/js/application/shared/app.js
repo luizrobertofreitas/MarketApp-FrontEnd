@@ -161,6 +161,10 @@ var Application = new function() {
 			return false;
 		});
 		
+		exitButton.click(function(){
+			window.location = "/marketapp-be/j_logout";
+		});
+		
 		/* hover effects in all JQuery UI buttons */
 		$('.icon-button').hover(
 			function() { $(this).addClass('ui-state-hover'); }, 

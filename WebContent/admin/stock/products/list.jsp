@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<tags:head title="Market Application - Front End"></tags:head>
+		<tags:head title="Market Application - Front End" />
 		<tags:resource-tag type="css" value="js/jquery-table/yui/style.css" />
 		<tags:resource-tag type="javascript" value="js/jquery-table/jquery.tablesorter-2.0.3.js" />
 		<tags:resource-tag type="javascript" value="js/jquery-table/jquery.tablesorter.filter.js" />
@@ -71,19 +71,20 @@
 				</ul>
 				<div id="tabs-1">					
 					<div id="content" class="content ui-widget">
-						<div id="content-search" class="content-search filter">
-							Buscar: <input type="text" name="productName"  id="filterBoxOne" size="35" class="text ui-widget-content ui-corner-all" />
-										<img src="/marketapp-fe/resources/images/img/cross.png" id="filterClearOne" title="Limpar o Filtro" alt="Limpar o Filtro"/>
+						<div id="content-search" class="content-search">
+							<input type="text" name="productName" id="productName" size="35" class="text ui-widget-content ui-corner-all" />
 						</div>
 						<table id="productsTable" class="ui-widget ui-widget-content display" cellspacing="2" cellpadding="2">
 							<thead>
-								<!-- 
 								<tr>
-						            <td colspan="8" class="filter" style="width: 400px">
-						                
+						            <td class="tableHeader">
+						                Produtos
+						            </td>
+						            <td colspan="8" class="filter">
+						                Buscar: <input id="filterBoxOne" value="" maxlength="30" size="30" type="text" />
+						                <tags:image-tag id="filterClearOne" src="img/cross.png" title="Limpar o Filtro" alt="Limpar o Filtro" />
 						            </td>
 						        </tr>
-						        -->
 								<tr class="ui-widget-header ">
 									<th><a href="#" title="Clique para ordenar"><fmt:message key="id" /></a></th>
 									<th><a href="#" title="Clique para ordenar"><fmt:message key="name" /></a></th>
@@ -92,6 +93,7 @@
 									<th><a href="#" title="Clique para ordenar"><fmt:message key="price" /></a></th>
 									<th><fmt:message key="options" /></th>
 								</tr>
+						
 							</thead>
 							<tbody>
 								<tr>
@@ -335,15 +337,14 @@
 									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
 								</tr>
 							</tbody>
-							<!-- 
 							<tfoot>
 								<tr id="pagerOne">
-							        <td colspan="7" style="width: 400px">
-										<img src="/marketapp-fe/resources/images/img/first.png" class="first" />
-										<img src="/marketapp-fe/resources/images/img/prev.png" class="prev" />
+							        <td colspan="7">
+							        	<tags:image-tag src="img/first.png" class="first" />
+							        	<tags:image-tag src="img/prev.png" class="prev" />
 								        <input type="text" class="pagedisplay"/>
-								        <img src="/marketapp-fe/resources/images/img/next.png" class="next" />
-										<img src="/marketapp-fe/resources/images/img/last.png" class="last" />
+								        <tags:image-tag src="img/next.png" class="next" />
+								        <tags:image-tag src="img/last.png" class="last" />
 								        <select class="pagesize">
 									        <option selected="selected"  value="10">10</option>
 									        <option value="20">20</option>
@@ -353,22 +354,12 @@
 								    </td>
 							    </tr>
 							</tfoot>
-							 -->
 						</table>
-						<div id="pagerOne" class="content-table-pagination" align="right">
-							<!-- <a href="#">Anterior</a> <a href="#">1</a> <a href="#">Próximo</a> -->
-							<img src="/marketapp-fe/resources/images/img/first.png" class="first" />
-							<img src="/marketapp-fe/resources/images/img/prev.png" class="prev" />
-							<input type="text" class="pagedisplay"/>
-							<img src="/marketapp-fe/resources/images/img/next.png" class="next" />
-							<img src="/marketapp-fe/resources/images/img/last.png" class="last" />
-							<select class="pagesize">
-								<option selected="selected"  value="10">10</option>
-								<option value="20">20</option>
-								<option value="30">30</option>
-							<option  value="40">40</option>
-							</select>
+						<!-- 
+						<div id="content-table-pagination" class="content-table-pagination" align="right">
+							<a href="#">Anterior</a> <a href="#">1</a> <a href="#">Próximo</a>
 						</div>
+						-->
 						<hr />
 						<button id="newProductButton" class="ui-state-default ui-corner-all icon-button">
 							<fmt:message key="products.new" />
