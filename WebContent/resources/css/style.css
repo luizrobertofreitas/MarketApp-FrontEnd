@@ -110,7 +110,10 @@ h1 {
 	height: 350px;
 }
 
-label, input { display:block; }
+/* Display as a block when in a form content */
+.form-content label { display:block; }
+.form-content input { display:block; }
+
 label { 
 	color: #4297D7;
 	font-weight: bold;
@@ -215,4 +218,9 @@ fieldset { padding:0; border:0; margin-top:25px; }
 
 .tabs-area {
 	margin: 10px 10px 30px 10px;
+}
+
+.content-table-pagination input {
+	border: none;
+	text-align: center;
 }

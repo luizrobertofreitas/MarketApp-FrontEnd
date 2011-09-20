@@ -14,6 +14,8 @@ var Products = new function(){
 	var productPrice = null;
 	var productQuantity = null;
 	
+	var filterClearOneButton = null;
+	
 	this.init = function() {
 		
 		/* Inputs */
@@ -30,6 +32,9 @@ var Products = new function(){
 		newProductButton = $('#newProductButton');
 		newProductDialog = $('#newProductDialog');
 		productsTable = $('#productsTable');
+		
+		filterClearOneButton = $('#filterClearOne');
+		filterClearOneButton.button();
 		
 		/* Dialog configuration */
 		newProductDialog.dialog({

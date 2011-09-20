@@ -28,7 +28,7 @@
 	</head>
 	<body>
 		<tags:common-dialogs />
-		<div id="newProductDialog" title="<fmt:message key="products.new" />" class="dialog">
+		<div id="newProductDialog" title="<fmt:message key="products.new" />" class="form-content dialog">
 			<p class="validateTips"><fmt:message key="all-fields-are-required" /></p>
 			<form id="form-data">
 				<fieldset>
@@ -72,8 +72,11 @@
 				<div id="tabs-1">					
 					<div id="content" class="content ui-widget">
 						<div id="content-search" class="content-search filter">
-							Buscar: <input type="text" name="productName"  id="filterBoxOne" size="35" class="text ui-widget-content ui-corner-all" />
-										<img src="/marketapp-fe/resources/images/img/cross.png" id="filterClearOne" title="Limpar o Filtro" alt="Limpar o Filtro"/>
+							<label for="productName">Pesquisar</label> 
+							<input type="text" name="productName"  id="filterBoxOne" size="35" class="text ui-widget-content ui-corner-all" />
+							<button id="filterClearOne" class="ui-state-default ui-corner-all icon-button">
+								Limpar Filtro
+							</button>
 						</div>
 						<table id="productsTable" class="ui-widget ui-widget-content display" cellspacing="2" cellpadding="2">
 							<thead>
@@ -357,16 +360,16 @@
 						</table>
 						<div id="pagerOne" class="content-table-pagination" align="right">
 							<!-- <a href="#">Anterior</a> <a href="#">1</a> <a href="#">Próximo</a> -->
-							<img src="/marketapp-fe/resources/images/img/first.png" class="first" />
-							<img src="/marketapp-fe/resources/images/img/prev.png" class="prev" />
-							<input type="text" class="pagedisplay"/>
-							<img src="/marketapp-fe/resources/images/img/next.png" class="next" />
-							<img src="/marketapp-fe/resources/images/img/last.png" class="last" />
+							<a href="#" class="first">Primeiro</a>
+							<a href="#" class="prev">Anterior</a>
+							<input type="text" class="pagedisplay" size="3" readonly="readonly"/>
+							<a href="#" class="next">Próximo</a>
+							<a href="#" class="last">Último</a>
 							<select class="pagesize">
 								<option selected="selected"  value="10">10</option>
 								<option value="20">20</option>
 								<option value="30">30</option>
-							<option  value="40">40</option>
+								<option  value="40">40</option>
 							</select>
 						</div>
 						<hr />
