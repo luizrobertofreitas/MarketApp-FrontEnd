@@ -8,50 +8,26 @@
 	<head>
 		<tags:head title="Market Application - Front End"></tags:head>
 		<tags:resource-tag type="css" value="js/jquery-table/yui/style.css" />
-		<tags:resource-tag type="javascript" value="js/jquery-table/jquery.tablesorter-2.0.3.js" />
+		<tags:resource-tag type="javascript" value="js/jquery-table/jquery.tablesorter.js" />
 		<tags:resource-tag type="javascript" value="js/jquery-table/jquery.tablesorter.filter.js" />
 		<tags:resource-tag type="javascript" value="js/jquery-table/jquery.tablesorter.pager.js" />
 		<tags:resource-tag type="javascript" value="js/application/products/manage.js" />
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$('#productTabs').tabs();
-				
-				$("#productsTable").tablesorter({ debug: false, sortList: [[0, 0]], widgets: ['zebra'] })
-                	.tablesorterPager({ 	container: $("#pagerOne"), positionFixed: false })
-                	.tablesorterFilter({ 	filterContainer: $("#filterBoxOne"),
-                    						filterClearContainer: $("#filterClearOne"),
-                    						filterColumns: [0, 1, 2],
-                    						filterCaseSensitive: false
-                });
-			});
-		</script>
 	</head>
 	<body>
 		<tags:common-dialogs />
-		<div id="newProductDialog" title="<fmt:message key="products.new" />" class="form-content dialog">
-			<p class="validateTips"><fmt:message key="all-fields-are-required" /></p>
-			<form id="form-data">
-				<fieldset>
-						<label for="productId"><fmt:message key="id" /></label>
-						<input type="text" name="productId" id="productId" size="10" class="text ui-widget-content ui-corner-all" readonly="readonly" />
-						<label for="productName"><fmt:message key="name" /></label>
-						<input type="text" name="productName" id="productName" size="35" class="text ui-widget-content ui-corner-all" />
-						<label for="category"><fmt:message key="category" /></label>
-						<select id="category" name="category" class="text ui-widget-content ui-corner-all">
-							<option value="0">Portas</option>
-							<option value="1">Batentes</option>
-							<option value="2" selected="selected">Fechaduras</option>
-						</select>
-						<label for="productDescription"><fmt:message key="description" /></label>
-						<textarea rows="4" cols="50" id="productDescription" name="productDescription" class="text ui-widget-content ui-corner-all" ></textarea>
-						<label for="productQuantity"><fmt:message key="initial-quantity" /></label>
-						<input type="text" id="productQuantity" name="productQuantity" size="10" class="text text-right-aligned ui-widget-content ui-corner-all" />
-						<label for="productPrice"><fmt:message key="price" /></label>
-						<input type="text" id="productPrice" name="productPrice" size="10" class="text text-right-aligned ui-widget-content ui-corner-all" />
-						
-				</fieldset>
-			</form>
-		</div>
+
+		<tags:dialog-tag title="products.new" id="newProductDialog" messagesAreaId="productsMessagesDialog">
+			<tags:form-input-tag type="text" readonly="true" style="number" id="productId" label="id" size="10" />
+			<tags:form-input-tag type="text" readonly="false" style="text" id="productName" label="name" size="35" />
+			<tags:form-select-tag label="category" id="category">
+				<option value="0">Portas</option>
+				<option value="1">Batentes</option>
+				<option value="2" selected="selected">Fechaduras</option>
+			</tags:form-select-tag>
+			<tags:form-textarea-tag label="description" rows="4" cols="50" id="productDescription" />
+			<tags:form-input-tag type="text" readonly="false" style="number" id="productQuantity" label="initial-quantity" size="10" />
+			<tags:form-input-tag type="text" readonly="false" style="money" id="productPrice" label="price" size="10" />
+		</tags:dialog-tag>
 		
 		<div id="page-top" class="ui-widget ui-widget-header page-top">
 			<tags:info />
@@ -59,9 +35,6 @@
 		
 		<tags:menu />
 		
-		<!-- <div id="content" class="content ui-widget"> -->
-			<!-- <h1><fmt:message key="products" /></h1> -->
-			
 			<div id="productTabs" class="tabs-area">
 				<ul>
 					<li><a href="#tabs-1">Gerenciar</a></li>
@@ -71,307 +44,14 @@
 				</ul>
 				<div id="tabs-1">					
 					<div id="content" class="content ui-widget">
-						<div id="content-search" class="content-search filter">
-							<label for="productName">Pesquisar</label> 
-							<input type="text" name="productName"  id="filterBoxOne" size="35" class="text ui-widget-content ui-corner-all" />
-							<button id="filterClearOne" class="ui-state-default ui-corner-all icon-button">
-								Limpar Filtro
-							</button>
-						</div>
-						<table id="productsTable" class="ui-widget ui-widget-content display" cellspacing="2" cellpadding="2">
-							<thead>
-								<!-- 
-								<tr>
-						            <td colspan="8" class="filter" style="width: 400px">
-						                
-						            </td>
-						        </tr>
-						        -->
-								<tr class="ui-widget-header ">
-									<th><a href="#" title="Clique para ordenar"><fmt:message key="id" /></a></th>
-									<th><a href="#" title="Clique para ordenar"><fmt:message key="name" /></a></th>
-									<th><a href="#" title="Clique para ordenar"><fmt:message key="category" /></a></th>
-									<th><a href="#" title="Clique para ordenar"><fmt:message key="quantity" /></a></th>
-									<th><a href="#" title="Clique para ordenar"><fmt:message key="price" /></a></th>
-									<th><fmt:message key="options" /></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">1</td>
-									<td class="string">Porta de Correr</td>
-									<td class="string">Portas</td>
-									<td class="number">17</td>
-									<td class="number">1,32</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-								<tr>
-									<td class="codigo">2</td>
-									<td class="string">Fechad. para Banheiro STAM</td>
-									<td class="string">Fechaduras</td>
-									<td class="number">31</td>
-									<td class="number">24,99</td>
-									<td class="options"><a href="#">Editar</a> <a href="#">Excluir</a></td>
-								</tr>
-							</tbody>
-							<!-- 
-							<tfoot>
-								<tr id="pagerOne">
-							        <td colspan="7" style="width: 400px">
-										<img src="/marketapp-fe/resources/images/img/first.png" class="first" />
-										<img src="/marketapp-fe/resources/images/img/prev.png" class="prev" />
-								        <input type="text" class="pagedisplay"/>
-								        <img src="/marketapp-fe/resources/images/img/next.png" class="next" />
-										<img src="/marketapp-fe/resources/images/img/last.png" class="last" />
-								        <select class="pagesize">
-									        <option selected="selected"  value="10">10</option>
-									        <option value="20">20</option>
-									        <option value="30">30</option>
-									        <option  value="40">40</option>
-								        </select>
-								    </td>
-							    </tr>
-							</tfoot>
-							 -->
-						</table>
-						<div id="pagerOne" class="content-table-pagination" align="right">
-							<!-- <a href="#">Anterior</a> <a href="#">1</a> <a href="#">Próximo</a> -->
-							<a href="#" class="first">Primeiro</a>
-							<a href="#" class="prev">Anterior</a>
-							<input type="text" class="pagedisplay" size="3" readonly="readonly"/>
-							<a href="#" class="next">Próximo</a>
-							<a href="#" class="last">Último</a>
-							<select class="pagesize">
-								<option selected="selected"  value="10">10</option>
-								<option value="20">20</option>
-								<option value="30">30</option>
-								<option  value="40">40</option>
-							</select>
-						</div>
+						<tags:table-tag searchFieldEnable="true" id="productsTable">
+							<th><a href="#"><fmt:message key="id" /></a></th>
+							<th><a href="#"><fmt:message key="name" /></a></th>
+							<th><a href="#"><fmt:message key="category" /></a></th>
+							<th><a href="#"><fmt:message key="quantity" /></a></th>
+							<th><a href="#"><fmt:message key="price" /></a></th>
+							<th><fmt:message key="options" /></th>
+						</tags:table-tag>
 						<hr />
 						<button id="newProductButton" class="ui-state-default ui-corner-all icon-button">
 							<fmt:message key="products.new" />
@@ -388,7 +68,6 @@
 					Compra
 				</div>
 			</div>
-		<!-- </div> -->
 		<tags:footer />
 	</body>	
 </html>

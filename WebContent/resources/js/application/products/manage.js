@@ -6,7 +6,9 @@ var Products = new function(){
 	
 	var newProductButton = null;
 	var newProductDialog = null;
-	var productsTable = null;
+	
+	var productsTable = null;	
+	var productTabs = null;
 	
 	var productId = null;
 	var productName = null; 
@@ -25,16 +27,13 @@ var Products = new function(){
 		productPrice = $('#productPrice');
 		productQuantity = $('#productQuantity');
 		
-		/* Inputs configuration */
-		productPrice.maskMoney({symbol:'R$ ', showSymbol:false, thousands:'.', decimal:',', symbolStay: true});
-		productQuantity.maskMoney({thousands:'.', allowZero: true, allowNegative: false, defaultZero: true, precision: 0});
-		
 		newProductButton = $('#newProductButton');
 		newProductDialog = $('#newProductDialog');
-		productsTable = $('#productsTable');
 		
 		filterClearOneButton = $('#filterClearOne');
-		filterClearOneButton.button();
+		
+		productTabs = $('#productTabs');
+		productTabs.tabs();
 		
 		/* Dialog configuration */
 		newProductDialog.dialog({
@@ -62,9 +61,25 @@ var Products = new function(){
 			text : true
 		});
 		
+		filterClearOneButton.button({
+			icons: {
+				primary : 'ui-icon-arrowrefresh-1-s'
+			},
+			text : true
+		});
+		
 		newProductButton.click(function(){
 			newProductDialog.dialog('open');
 			return false;
 		});
+		
+		productsTable = $('#productsTable');
+		productsTable.tablesorter({ debug: false, sortList: [[0, 0]], widgets: ['zebra'] })
+	    	.tablesorterPager({ 	container: $("#pagerOne"), positionFixed: false })
+	    	.tablesorterFilter({ 	filterContainer: $("#filterBoxOne"),
+	        						filterClearContainer: $("#filterClearOne"),
+	        						filterColumns: [0, 1, 2],
+	        						filterCaseSensitive: false
+	    });
 	};
 };

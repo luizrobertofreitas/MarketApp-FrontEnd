@@ -29,79 +29,53 @@ h1 {
 
 .content table {
 	width: 100%;
-	border: 1px solid #4297D7;
-	margin-top: 20px;
-	margin-bottom: 10px;
+	border-left: 1px solid #0078AE;
+	border-right: 1px solid #0078AE;
 }
 
-.content table tr td {
+.content table thead tr th {
+	padding: 10px;
+}
+
+.content table tbody tr td {
 	padding: 8px;
-	border-right: 1px solid #4297D7;	
 }
 
-.content table tr td.number {
-	text-align: right;
-	width: 120px;
+.content .ui-state-default {
+	border: 1px solid #0078AE; !important
 }
 
-.content table tr td.options {
-	text-align: center;
+.content .dataTables_filter input {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: .4em;
 	width: 200px;
+	border: 1px solid #0078AE;
 }
 
-.content table tr td.string {
-	text-align: left;
-	width: 200px;
+.content .dataTables_filter select {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: .4em;
+	border: 1px solid #0078AE;
 }
 
-.content table tr td.codigo {
-	text-align: center;
-	width: 70px;
-}
-
-.content table tr th {
+.content .dataTables_info {
 	padding: 8px;
-	border-right: 1px solid #4297D7;
-	font-size: 14px;
 }
 
-.content table tfoot tr td {
+.content .dataTables_length {
 	padding: 8px;
-	border-right: 1px solid #4297D7;
-	font-size: 14px;
 }
 
-.content table a {
-	font-size: 14px;
-	color: white;
-	text-decoration: none;
-}
-
-.content table a:hover {
-	color: white;
-	text-decoration: underline;
-}
-
-.content .options a {
-	font-size: 12px;
-	color: #4297D7;
-	text-decoration: underline;
-}
-
-.content .options a:hover {
-	color: black;
-	text-decoration: none;
-}
-
-.content hr {
-	background: #4297D7;
-	height: 0.5px;
+.content .buttons-area {
 	margin-top: 20px;
-	margin-bottom: 20px;
 }
 
-.content-search {
-	margin-bottom: 10px;
+.dataTables_wrapper label {
+	color: white;
 }
 
 .dialog {
@@ -120,13 +94,13 @@ label {
 }
 
 .text { margin-bottom:12px; padding: .4em; }
-.text-right-aligned { text-align: right; }
+.number, .money { text-align: right; margin-bottom:12px; padding: .4em; }
 
 fieldset { padding:0; border:0; margin-top:25px; }
 .ui-dialog .ui-state-error { padding: .3em; }
 .validateTips { border: 1px solid transparent; padding: 0.3em; }
 
-/*
+
 .footer {
 	position: absolute;
 	bottom: 0;
@@ -138,8 +112,9 @@ fieldset { padding:0; border:0; margin-top:25px; }
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
-*/
 
+
+/*
 .footer {
 	position: relative;
 	margin-top: -20px;
@@ -151,7 +126,7 @@ fieldset { padding:0; border:0; margin-top:25px; }
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
-
+*/
 .footer a {
 	text-decoration: underline;
 	color: white;
@@ -218,9 +193,4 @@ fieldset { padding:0; border:0; margin-top:25px; }
 
 .tabs-area {
 	margin: 10px 10px 30px 10px;
-}
-
-.content-table-pagination input {
-	border: none;
-	text-align: center;
 }

@@ -4,6 +4,9 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<link href="/marketapp-fe/resources/images/m-20.png" rel="shortcut icon" type="image/x-icon"/>
+
 <tags:resource-tag type="css" value="css/reset.css" />
 <tags:resource-tag type="css" value="js/jquery-ui/css/start/jquery-ui-1.8.16.custom.css" />
 

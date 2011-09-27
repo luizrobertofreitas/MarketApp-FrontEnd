@@ -5,6 +5,9 @@ $(document).ready(function(){
 var Application = new function() {
 	
 	var pageBody = null;
+	var inputNumber = null;
+	var inputMoney = null;
+	var buttons = null;
 	
 	var changePasswordButton = null;
 	var accountButton = null;
@@ -33,6 +36,18 @@ var Application = new function() {
 	this.init = function() {
 		
 		pageBody = $('body');
+		
+		/* Everybody that seems to be a number */
+		inputNumber = $('.number');
+		inputNumber.maskMoney({thousands:'.', allowZero: true, allowNegative: false, defaultZero: true, precision: 0});
+		
+		/* Everybody that seems to be a money */
+		inputMoney = $('.money');
+		inputMoney.maskMoney({symbol:'R$ ', showSymbol:false, thousands:'.', decimal:',', symbolStay: true});
+		
+		/* Buttons configuration */
+		buttons = $('button');
+		buttons.button();
 		
 		changePasswordButton = $('#changePasswordButton');
 		accountButton = $('#accountButton');
@@ -170,6 +185,10 @@ var Application = new function() {
 			function() { $(this).addClass('ui-state-hover'); }, 
 			function() { $(this).removeClass('ui-state-hover'); }
 		);
+		
+		/* Table style */
+		$('.dataTables_filter input').addClass('text ui-widget-content ui-corner-all');
+		$('.dataTables_length select').addClass('text ui-widget-content ui-corner-all');
 	};
 	
 	/* Function that clears the change password dialog fields and messages */
@@ -259,9 +278,9 @@ var Application = new function() {
 	
 	this.runZebraStyle = function() {
 		/* Zebra code for all data tables */
-		$('.datatable tr:even').addClass('data alternate-row');
-		$('.datatable tr:odd').addClass('data');
-		$('.datatable tr:first').removeClass('data alternate-row');
+		$('.datatable tbody tr:even').addClass('data alternate-row');
+		$('.datatable tbody tr:odd').addClass('data');
+		$('.datatable tbody tr:first').removeClass('data alternate-row');
 	};
 	
 	this.splitMessages = function(message) {
@@ -304,6 +323,17 @@ var Application = new function() {
 			'displayNavigation': false,
 			'autoClose': true,
 			'delayTime': 6000
+		});
+	};
+	
+	/* Configure the current table passed as parameter */
+	this.configureTable = function(table, sortList, filterColumns) {
+		$('#categoriesTable').tablesorter({ debug: false, sortList: [[0, 0]], widgets: ['zebra'] })
+		    	 .tablesorterPager({ 	container: $("#pagerOne"), positionFixed: false })
+		    	 .tablesorterFilter({ 	filterContainer: $("#filterBoxOne"),
+		        						filterClearContainer: $("#filterClearOne"),
+		        						filterColumns: [0, 1, 2],
+		        						filterCaseSensitive: false
 		});
 	};
 };

@@ -5,7 +5,12 @@ $(document).ready(function(){
 var Categories = new function(){
 	
 	var newCategoryButton = null;
+	var editCategoryButton = null;
+	var removeCategoryButton = null;
+	
 	var newCategoryDialog = null;
+	
+	var categoriesTable = null;
 	
 	var dialogMessages = null;
 	
@@ -17,6 +22,9 @@ var Categories = new function(){
 	this.init = function() {
 		
 		newCategoryButton = $('#newCategoryButton');
+		editCategoryButton = $('#editCategoryButton');
+		removeCategoryButton = $('#removeCategoryButton');
+		
 		newCategoryDialog = $('#newCategoryDialog');
 		
 		dialogMessages = $('#dialogMessages');
@@ -25,6 +33,29 @@ var Categories = new function(){
 		idTextField = $('#id');
 		nameTextField = $('#name');
 		descriptionTextField = $('#description');
+		
+		categoriesTable = $('#categoriesTable').dataTable({
+			"bJQueryUI": true,
+			"sPaginationType": "full_numbers",
+			"sAjaxSource": "/marketapp-be/resources/categories/list",
+			"sAjaxDataProp": "categories",
+			"aoColumns": [
+				{ "mDataProp": "id", "aTargets": [0]},
+				{ "mDataProp": "name", "aTargets": [1]},
+				{ "mDataProp": "description", "aTargets": [2]}
+			],
+			"oLanguage": {
+				"sUrl": "/marketapp-fe/resources/js/jquery-datatable/pt-br.txt"
+			}
+		});
+		
+		$('#categoriesTable tbody').click(function(event){
+			$(categoriesTable.fnSettings().aoData).each(function(){
+				$(this.nTr).removeClass('row_selected');
+			});
+			$(event.target.parentNode).addClass('row_selected');
+		});
+		
 		
 		/* Dialog configuration */
 		newCategoryDialog.dialog({
@@ -53,18 +84,30 @@ var Categories = new function(){
 		/* Buttons configuration */
 		newCategoryButton.button({
 			icons : {
-				primary : 'ui-icon-circle-plus'
+				primary : 'ui-icon-plus'
 			},
 			text : true
 		});
 		
+		editCategoryButton.button({
+			icons : {
+				primary : 'ui-icon-pencil'
+			},
+			text : true
+		});
+		
+		removeCategoryButton.button({
+			icons : {
+				primary : 'ui-icon-close'
+			},
+			text : true
+		});
+		
+		/* Button handlers */
 		newCategoryButton.click(function(){
 			newCategoryDialog.dialog('open');
 			return false;
 		});
-		
-		/* Loading all categories */
-		Categories.loadAll();
 	};
 	
 	/* Cleaning all elements */
@@ -139,36 +182,6 @@ var Categories = new function(){
 				/* Open dialog to edit */
 				newCategoryDialog.dialog('open');
 			}
-		});
-	};
-	
-	/* This function loads all categories */
-	this.loadAll = function(){
-		$.read('/marketapp-be/resources/categories/list', function(response) {
-			Categories.loadFromResponse(response);
-		});
-	};
-	
-	this.loadFromResponse = function(response) {
-		
-		$('.data').remove();
-		
-		/* Iterate over the response object */
-		$.each(response.categories, function(index, obj) {
-			var idTd = '<td class="codigo">' + obj.id + '</td>';
-			var nomeTd = '<td class="string">' + obj.name + '</td>';
-			var descricaoTd = '<td class="string">' + obj.description + '</td>';
-			var optionsTd = '<td class="options">' + 
-							'<a href="#" onclick="Categories.load(' + obj.id + ');">Editar</a> ' +	
-							'<a href="#" onclick="Categories.destroy(' + obj.id +');">Excluir</a>' +
-							'</td>';
-
-			var newTr = '<tr>' + idTd + nomeTd + descricaoTd + optionsTd + '</tr>';
-			
-			$('#categories tr:last').after(newTr);
-			
-			/* Running Zebra style for tables */
-			Application.runZebraStyle();
 		});
 	};
 };

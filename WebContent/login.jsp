@@ -20,10 +20,10 @@
 				<div id="login-form-content" class="form-content">
 					<form action="j_security_check" method="post">
 						<label for="j_username"><fmt:message key="username" />:</label><br/>
-						<input type="text" id="j_username" name="j_username" size="35" class="required email text ui-widget-content ui-corner-all" />
+						<input type="text" id="j_username" name="j_username" size="35" class="text ui-widget-content ui-corner-all" />
 						<label for="j_password"><fmt:message key="password" />:</label><br/>
-						<input type="password" id="j_password" name="j_password" size="10" class="required email text ui-widget-content ui-corner-all" />
-						<input id="loginSubmit" type="submit" value="<fmt:message key="login.button" />" class="ui-button-text" />
+						<input type="password" id="j_password" name="j_password" size="10" class="text ui-widget-content ui-corner-all" />
+						<input id="loginSubmit" type="submit" value="<fmt:message key="login.button" />" class="button ui-button-text" />
 					</form>
 				</div>
 			</div>

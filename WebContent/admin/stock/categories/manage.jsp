@@ -7,30 +7,31 @@
 <html>
 	<head>
 		<tags:head title="Market Application - Front End" />
-		<!--
-		<tags:resource-tag type="css" value="js/jquery-table/media/css/demo_table.css" />
-		<tags:resource-tag type="javascript" value="js/jquery-table/media/js/jquery.dataTables.min.js" />
+		<!-- 
+		<tags:resource-tag type="css" value="js/jquery-table/yui/style.css" />
+		<tags:resource-tag type="javascript" value="js/jquery-table/jquery.tablesorter.js" />
+		<tags:resource-tag type="javascript" value="js/jquery-table/jquery.tablesorter.filter.js" />
+		<tags:resource-tag type="javascript" value="js/jquery-table/jquery.tablesorter.pager.js" />
 		-->
+		<tags:resource-tag type="css" value="js/jquery-datatable/media/css/demo_table.css" />
+		<tags:resource-tag type="css" value="js/jquery-datatable/media/css/demo_table_jui.css" />
+		<tags:resource-tag type="javascript" value="js/jquery-datatable/media/js/jquery.dataTables.js" />
+		
 		<tags:resource-tag type="javascript" value="js/application/categories/manage.js" />
+		
+		<script type="text/javascript">
+			
+		</script>
 		
 	</head>
 	<body>
 		<tags:common-dialogs />
-		<div id="newCategoryDialog" title="<fmt:message key="categories" />" class="dialog">
-			<p class="validateTips"><fmt:message key="all-fields-are-required" /></p>
-			<form id="form-data">
-				<fieldset>
-					<label for="id"><fmt:message key="id" /></label>
-					<input type="text" name="id" id="id" class="text ui-widget-content ui-corner-all" readonly="readonly" />
-					<label for="name"><fmt:message key="name" /></label>
-					<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
-					<label for="description"><fmt:message key="description" /></label>
-					<textarea rows="4" cols="50" id="description" name="description" class="ui-widget-content ui-corner-all" ></textarea>
-				</fieldset>
-			</form>
-			<div id="dialogMessages" class="ui-widget dialog-messages">
-			</div>
-		</div>
+		
+		<tags:dialog-tag messagesAreaId="dialogMessages" title="categories.new" id="newCategoryDialog">
+			<tags:form-input-tag readonly="true" label="id" style="text" type="text" id="id" />
+			<tags:form-input-tag readonly="false" label="name" style="text" type="text" id="name" />
+			<tags:form-textarea-tag label="description" rows="4" cols="50" id="description" />
+		</tags:dialog-tag>
 		
 		<div id="page-top" class="ui-widget ui-widget-header page-top">
 			<tags:info />			
@@ -39,33 +40,28 @@
 		<tags:menu />
 		
 		<div id="content" class="content ui-widget">
-			<h1><fmt:message key="categories" /></h1>
-				
-			<table id="categories" class="ui-widget ui-widget-content display datatable" cellspacing="2" cellpadding="2">
-				<!-- 
+			<table class="display" id="categoriesTable">
 				<thead>
-				-->
-					<tr class="ui-widget-header ">
-						<th><fmt:message key="id" /></th>
-						<th><fmt:message key="name" /></th>
-						<th><fmt:message key="description" /></th>
-						<th><fmt:message key="options" /></th>
+					<tr>
+						<th>Código</th>
+						<th>Nome</th>
+						<th>Descrição</th>
 					</tr>
-				<!--
 				</thead>
 				<tbody>
 				</tbody>
-				-->
 			</table>
-			<div id="content-table-pagination" class="content-table-pagination" align="right">
-				<a href="#"><fmt:message key="previous" /></a> <a href="#">1</a> <a href="#"><fmt:message key="next" /></a>
+			<div id="buttons-area" class="buttons-area">
+				<button id="newCategoryButton" class="ui-state-default ui-corner-all icon-button">
+					<fmt:message key="new" />
+				</button>
+				<button id="editCategoryButton" class="ui-state-default ui-corner-all icon-button">
+					<fmt:message key="edit" />
+				</button>
+				<button id="removeCategoryButton" class="ui-state-default ui-corner-all icon-button">
+					<fmt:message key="remove" />
+				</button>
 			</div>
-			<div id="contentMessages" class="ui-widget">
-			</div>
-			<hr />
-			<button id="newCategoryButton" class="ui-state-default ui-corner-all icon-button">
-				<fmt:message key="categories.new" />
-			</button>
 		</div>
 		<tags:footer />
 	</body>	
