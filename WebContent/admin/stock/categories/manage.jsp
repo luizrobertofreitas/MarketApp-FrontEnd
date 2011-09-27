@@ -61,6 +61,9 @@
 				<button id="removeCategoryButton" class="ui-state-default ui-corner-all icon-button">
 					<fmt:message key="remove" />
 				</button>
+				<button id="refreshCategoryButton" class="ui-state-default ui-corner-all icon-button">
+					<fmt:message key="reload" />
+				</button>
 			</div>
 		</div>
 		<tags:footer />

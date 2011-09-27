@@ -7,6 +7,7 @@ var Categories = new function(){
 	var newCategoryButton = null;
 	var editCategoryButton = null;
 	var removeCategoryButton = null;
+	var refreshCategoryButton = null;
 	
 	var newCategoryDialog = null;
 	
@@ -18,13 +19,15 @@ var Categories = new function(){
 	var nameTextField = null;
 	var descriptionTextField = null;
 	
-	/* Init Function */
+	/* Initialize Function */
 	this.init = function() {
-		
-		newCategoryButton = $('#newCategoryButton');
-		editCategoryButton = $('#editCategoryButton');
-		removeCategoryButton = $('#removeCategoryButton');
-		
+		Categories.initNewCategoryDialog();
+		Categories.initTable();
+		Categories.initButtons();
+	};
+	
+	/* Initialize the new Category Dialog and it's fields */
+	this.initNewCategoryDialog = function() {
 		newCategoryDialog = $('#newCategoryDialog');
 		
 		dialogMessages = $('#dialogMessages');
@@ -33,29 +36,6 @@ var Categories = new function(){
 		idTextField = $('#id');
 		nameTextField = $('#name');
 		descriptionTextField = $('#description');
-		
-		categoriesTable = $('#categoriesTable').dataTable({
-			"bJQueryUI": true,
-			"sPaginationType": "full_numbers",
-			"sAjaxSource": "/marketapp-be/resources/categories/list",
-			"sAjaxDataProp": "categories",
-			"aoColumns": [
-				{ "mDataProp": "id", "aTargets": [0]},
-				{ "mDataProp": "name", "aTargets": [1]},
-				{ "mDataProp": "description", "aTargets": [2]}
-			],
-			"oLanguage": {
-				"sUrl": "/marketapp-fe/resources/js/jquery-datatable/pt-br.txt"
-			}
-		});
-		
-		$('#categoriesTable tbody').click(function(event){
-			$(categoriesTable.fnSettings().aoData).each(function(){
-				$(this.nTr).removeClass('row_selected');
-			});
-			$(event.target.parentNode).addClass('row_selected');
-		});
-		
 		
 		/* Dialog configuration */
 		newCategoryDialog.dialog({
@@ -80,6 +60,14 @@ var Categories = new function(){
 				} 
 			}
 		});
+	};
+	
+	/* Initialize all Buttons */
+	this.initButtons = function() {
+		newCategoryButton = $('#newCategoryButton');
+		editCategoryButton = $('#editCategoryButton');
+		removeCategoryButton = $('#removeCategoryButton');
+		refreshCategoryButton = $('#refreshCategoryButton');
 		
 		/* Buttons configuration */
 		newCategoryButton.button({
@@ -103,10 +91,53 @@ var Categories = new function(){
 			text : true
 		});
 		
+		refreshCategoryButton.button({
+			icons : {
+				primary : 'ui-icon-refresh'
+			},
+			text : true
+		});
+		
 		/* Button handlers */
-		newCategoryButton.click(function(){
+		newCategoryButton.click(function() {
 			newCategoryDialog.dialog('open');
 			return false;
+		});
+		
+		editCategoryButton.click(function() {
+			Categories.loadEditDialog();
+		});
+		
+		refreshCategoryButton.click(function() {
+			/* Reloading table */
+			Categories.reloadTable();
+		});
+	};
+	
+	/* Initialize the table */
+	this.initTable = function() {
+		categoriesTable = $('#categoriesTable').dataTable({
+			"bJQueryUI": true,
+			"sPaginationType": "full_numbers",
+			"iDisplayLength": 15,
+			"bLengthChange": false,
+			"sAjaxSource": "/marketapp-be/resources/categories/list",
+			"sAjaxDataProp": "categories",
+			"aoColumns": [
+				{ "mDataProp": "id", "aTargets": [0]},
+				{ "mDataProp": "name", "aTargets": [1]},
+				{ "mDataProp": "description", "aTargets": [2]}
+			],
+			"oLanguage": {
+				"sUrl": "/marketapp-fe/resources/js/jquery-datatable/pt-br.txt"
+			}
+		});
+		
+		$('#categoriesTable tbody').click(function(event){
+			$(categoriesTable.fnSettings().aoData).each(function(){
+				$(this.nTr).removeClass('row_selected');
+			});
+			$(event.target.parentNode).addClass('row_selected');
 		});
 	};
 	
@@ -123,7 +154,9 @@ var Categories = new function(){
 	this.update = function() {
 		$.update('/marketapp-be/resources/categories/update', {id: idTextField.val(), name: nameTextField.val(), description: descriptionTextField.val()}, function(response){
 			if(response.status == 'success') {
-				Categories.loadAll();
+				
+				/* Reloading table */
+				Categories.reloadTable();
 				
 				/* Open dialog to edit */
 				newCategoryDialog.dialog('close');
@@ -141,7 +174,9 @@ var Categories = new function(){
 	this.create = function() {
 		$.create('/marketapp-be/resources/categories/create', {name: nameTextField.val(), description: descriptionTextField.val()}, function(response) {
 			if(response.status == 'success') {
-				Categories.loadAll();
+				
+				/* Reloading table */
+				Categories.reloadTable();
 				
 				/* Open dialog to edit */
 				newCategoryDialog.dialog('close');
@@ -161,27 +196,49 @@ var Categories = new function(){
 			$.destroy({
 				url: '/marketapp-be/resources/categories/destroy/' + id,
 				success: function(response) {
-					/* The JSON object already comes with all categories */
-					Categories.loadFromResponse(response);
+					Categories.reloadTable();
 					Application.runSuccessNotification(response.method, response.message);
 				}
 			});
 		}
 	};
 	
+	/* Method that reload the table */
+	this.reloadTable = function() {
+		if(!Application.isUndefinedObject(categoriesTable)) {
+			$.read('/marketapp-be/resources/categories/list', function(response) {
+				/* Get the common attributes in the JSON object */
+				if(response.status == 'success') {
+					if(!Application.isUndefinedObject(categoriesTable)) {
+						categoriesTable.fnClearTable();
+						categoriesTable.fnAddData(response.categories);
+					}
+				}
+			});
+		}
+	};
+	
 	/* Load Category function */
-	this.load = function(id) {
-		$.read('/marketapp-be/resources/categories/' + id, function(response) {
-			/* Get the common attributes in the JSON object */
-			if(response.status == 'success') {
-				/* Load data values */
-				idTextField.val(response.category.id);
-				nameTextField.val(response.category.name);
-				descriptionTextField.val(response.category.description);
-				
-				/* Open dialog to edit */
-				newCategoryDialog.dialog('open');
-			}
-		});
+	this.loadEditDialog = function() {
+		
+		var aData = Application.getSelectedRowData(categoriesTable);
+		
+		if(aData) {
+			$.read('/marketapp-be/resources/categories/' + aData.id, function(response) {
+				/* Get the common attributes in the JSON object */
+				if(response.status == 'success') {
+					/* Load data values */
+					idTextField.val(response.category.id);
+					nameTextField.val(response.category.name);
+					descriptionTextField.val(response.category.description);
+					
+					/* Open dialog to edit */
+					newCategoryDialog.dialog('open');
+				}
+			});
+		}
+		else {
+			alert('É necessário selecionar um registro para editar');
+		}
 	};
 };

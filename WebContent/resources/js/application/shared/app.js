@@ -336,4 +336,29 @@ var Application = new function() {
 		        						filterCaseSensitive: false
 		});
 	};
+	
+	/* Function to check whether the object is undefined or not */
+	this.isUndefinedObject = function(object) {
+		if(typeof object == 'undefined') {
+			return true;
+		}
+		
+		return false;
+	};
+	
+	/* Get Selected Rows from a table */
+	this.getSelectedRowData = function(oTable) {
+		
+		if(!Application.isUndefinedObject(oTable)) {
+			var aTrs = oTable.fnGetNodes();
+			
+			for(var i = 0 ; i < aTrs.length ; i++){
+				if($(aTrs[i]).hasClass('row_selected')){
+					return oTable.fnGetData(aTrs[i]);
+				}
+			}
+		}
+		
+		return false;
+	};
 };
