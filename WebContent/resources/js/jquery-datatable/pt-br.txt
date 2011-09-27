@@ -6,12 +6,12 @@
 	"sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
 	"sInfoFiltered": "(filtrado de _MAX_ registros no total)",
 	"sInfoPostFix":  "",
-	"sSearch":       "Buscar:",
+	"sSearch":       "Pesquisar:",
 	"sUrl":          "",
 	"oPaginate": {
 		"sFirst":    "Primeiro",
 		"sPrevious": "Anterior",
-		"sNext":     "Seguinte",
+		"sNext":     "Próximo",
 		"sLast":     "Último"
 	}
 }
