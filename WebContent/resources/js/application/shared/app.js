@@ -276,13 +276,6 @@ var Application = new function() {
 				'</div>';
 	};
 	
-	this.runZebraStyle = function() {
-		/* Zebra code for all data tables */
-		$('.datatable tbody tr:even').addClass('data alternate-row');
-		$('.datatable tbody tr:odd').addClass('data');
-		$('.datatable tbody tr:first').removeClass('data alternate-row');
-	};
-	
 	this.splitMessages = function(message) {
 		var htmlMessage = '<ol class="error-messages-list">';
 		
@@ -293,36 +286,11 @@ var Application = new function() {
 		return htmlMessage + '</ol>';
 	};
 	
-	this.runSuccessNotification = function(method, message) {
-		pageBody.showMessage({
-			'thisMessage': ["[" + method + "] - " + message],
-			'className': 'success ui-widget ui-corner-all',
-			'opacity': 85,
-			'displayNavigation': false,
-			'autoClose': true,
-			'delayTime': 6000
-		});
-	};
-	
-	this.runFailureNotification = function(method, message) {
-		pageBody.showMessage({
-			'thisMessage': ["[" + method + "] - " + message],
-			'className': 'fail ui-widget ui-corner-all',
-			'opacity': 85,
-			'displayNavigation': false,
-			'autoClose': true,
-			'delayTime': 6000
-		});
-	};
-	
-	this.runInfoNotification = function(method, message) {
-		pageBody.showMessage({
-			'thisMessage': ["[" + method + "] - " + message],
-			'className': 'notification ui-widget ui-corner-all',
-			'opacity': 85,
-			'displayNavigation': false,
-			'autoClose': true,
-			'delayTime': 6000
+	/* Notification */
+	this.runNotification = function(method, message, status) {
+		$.notifyBar({
+			cls: status, 
+			html: "[" + method + "] " + message
 		});
 	};
 	

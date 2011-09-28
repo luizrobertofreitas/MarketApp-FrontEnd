@@ -7,8 +7,17 @@
 
 <link href="/marketapp-fe/resources/images/m-20.png" rel="shortcut icon" type="image/x-icon"/>
 
+<!-- Reset style sheet -->
 <tags:resource-tag type="css" value="css/reset.css" />
+
+<!-- JQuery UI style sheet -->
 <tags:resource-tag type="css" value="js/jquery-ui/css/start/jquery-ui-1.8.16.custom.css" />
+
+<!-- Notification bar style sheet -->
+<tags:resource-tag type="css" value="js/jquery-notifier/jquery.notifyBar.css" />
+
+<!-- Application style sheet -->
+<tags:resource-tag type="css" value="css/style.css" />
 
 <!-- JQuery core and JQuery UI -->
 <tags:resource-tag type="javascript" value="js/jquery-ui/js/jquery-1.6.2.min.js" />
@@ -21,11 +30,8 @@
 <!-- JQuery REST plugin -->
 <tags:resource-tag type="javascript" value="js/rest/jquery.rest.js" />
 
-<!-- Application stylesheet -->
-<tags:resource-tag type="css" value="css/style.css" />
-
 <!-- JQuery notification bar -->
-<tags:resource-tag type="javascript" value="js/jquery-notification/jquery.showMessage.min.js" />
+<tags:resource-tag type="javascript" value="js/jquery-notifier/jquery.notifyBar.js" />
 
 <!-- JQuery input mask -->
 <tags:resource-tag type="javascript" value="js/jquery-input-mask/jquery.maskedinput-1.3.min.js" />

@@ -109,8 +109,11 @@ var Categories = new function(){
 		});
 		
 		refreshCategoryButton.click(function() {
-			/* Reloading table */
 			Categories.reloadTable();
+		});
+		
+		removeCategoryButton.click(function() {
+			Categories.destroy();
 		});
 	};
 	
@@ -119,7 +122,7 @@ var Categories = new function(){
 		categoriesTable = $('#categoriesTable').dataTable({
 			"bJQueryUI": true,
 			"sPaginationType": "full_numbers",
-			"iDisplayLength": 15,
+			"iDisplayLength": 7,
 			"bLengthChange": false,
 			"sAjaxSource": "/marketapp-be/resources/categories/list",
 			"sAjaxDataProp": "categories",
@@ -160,7 +163,7 @@ var Categories = new function(){
 				
 				/* Open dialog to edit */
 				newCategoryDialog.dialog('close');
-				Application.runSuccessNotification(response.method, response.message);
+				Application.runNotification(response.method, response.message, 'success');
 			}
 			else {
 				dialogMessages.append(Application.createErrorMessage(Application.splitMessages(response.message)));
@@ -180,7 +183,7 @@ var Categories = new function(){
 				
 				/* Open dialog to edit */
 				newCategoryDialog.dialog('close');
-				Application.runSuccessNotification(response.method, response.message);
+				Application.runNotification(response.method, response.message, 'success');
 			}
 			else {
 				dialogMessages.append(Application.createErrorMessage(Application.splitMessages(response.message)));
@@ -191,15 +194,22 @@ var Categories = new function(){
 	};
 	
 	/* Remove a category */
-	this.destroy = function(id) {
-		if(confirm('Deseja excluir o registro selecionado?')) {
-			$.destroy({
-				url: '/marketapp-be/resources/categories/destroy/' + id,
-				success: function(response) {
-					Categories.reloadTable();
-					Application.runSuccessNotification(response.method, response.message);
-				}
-			});
+	this.destroy = function() {
+		var aData = Application.getSelectedRowData(categoriesTable);
+		
+		if(aData) {
+			if(confirm('Deseja excluir o registro selecionado?')) {
+				$.destroy({
+					url: '/marketapp-be/resources/categories/destroy/' + aData.id,
+					success: function(response) {
+						Categories.reloadTable();
+						Application.runNotification(response.method, response.message, 'success');
+					}
+				});
+			}
+		}
+		else {
+			Application.runNotification('NONE', '&Eacute; necess&aacute;rio selecionar um registro para excluir', 'error');			
 		}
 	};
 	
@@ -238,7 +248,7 @@ var Categories = new function(){
 			});
 		}
 		else {
-			alert('É necessário selecionar um registro para editar');
+			Application.runNotification('NONE', '&Eacute; necess&aacute;rio selecionar um registro para editar', 'error');
 		}
 	};
 };
